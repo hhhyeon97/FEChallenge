@@ -8,6 +8,8 @@ var secondsInput = document.getElementById("seconds");
 var timerDisplay = document.getElementById("timer");
 var timeInputForm = document.getElementById("timeInput");
 
+var remainingSeconds = 0; // 남은 시간 저장할 변수
+
 timerDisplay.style.display="none";
 
 
@@ -52,6 +54,12 @@ timerDisplay.style.display="none";
                            parseInt(minutesInput.value) * 60 +
                            parseInt(secondsInput.value);
 
+		 // 추가된 부분: 중간에 타이머가 멈추었을 때 남은 시간 저장
+    	if (remainingSeconds > 0) {
+        totalSeconds = remainingSeconds;
+        remainingSeconds = 0;
+    	}
+
 
         // 첫 번째 업데이트
         updateDisplay(totalSeconds);
@@ -62,11 +70,9 @@ timerDisplay.style.display="none";
 		// 타이머 보이기 
 		timerDisplay.style.display="block";
 		
-
   		// 버튼 비활성화
         document.getElementById('startBtn').disabled = true;
         
-
         // 타이머 시작
         timer = setInterval(function () {
             if (totalSeconds <= 0) {
@@ -74,6 +80,10 @@ timerDisplay.style.display="none";
                 alert("타이머 종료!");
                 resetTimer();
             } else {
+            
+             // 추가된 부분: 중간에 타이머가 멈추었을 때 남은 시간 저장
+            remainingSeconds = totalSeconds;
+            
                 // 업데이트
                 updateDisplay(totalSeconds);
 
@@ -86,7 +96,8 @@ timerDisplay.style.display="none";
     function stopTimer() {
         // 타이머 정지
         clearInterval(timer);
-       
+      	// start 버튼 활성화
+        document.getElementById('startBtn').disabled = false; 
     }
 
     function resetTimer() {
@@ -96,11 +107,9 @@ timerDisplay.style.display="none";
         hoursInput.value = "0";
         minutesInput.value = "0";
         secondsInput.value = "0";
-        // 타이머 숨기기 
-        timerDisplay.style.display="none";
-        // 입력 폼 보이기
-        timeInputForm.style.display = "block";
-        // start 버튼 활성화
-        document.getElementById('startBtn').disabled = false;
+ 		remainingSeconds = 0;
+ 	 	// 페이지 리로드
+    	location.reload();
+      
     }
     
