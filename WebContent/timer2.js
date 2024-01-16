@@ -60,19 +60,18 @@ timerDisplay.style.display="none";
         remainingSeconds = 0;
     	}
 
+	// 첫 번째 업데이트
+    updateDisplay(totalSeconds);
 
-        // 첫 번째 업데이트
-        updateDisplay(totalSeconds);
+    // 입력 폼 숨기기
+    timeInputForm.style.display = "none";
 
-		// 입력 폼 숨기기
-        timeInputForm.style.display = "none";
-		
-		// 타이머 보이기 
-		timerDisplay.style.display="block";
-		
-  		// 버튼 비활성화
-        document.getElementById('startBtn').disabled = true;
-        
+    // 타이머 보이기 
+    timerDisplay.style.display = "block";
+
+    // 버튼 비활성화
+    document.getElementById('startBtn').disabled = true;
+    
         // 타이머 시작
         timer = setInterval(function () {
             if (totalSeconds <= 0) {
@@ -102,12 +101,12 @@ timerDisplay.style.display="none";
 
     function resetTimer() {
         // 타이머 초기화
-        clearInterval(timer);
-        timerDisplay.innerHTML = "00:00:00";
-        hoursInput.value = "0";
-        minutesInput.value = "0";
-        secondsInput.value = "0";
- 		remainingSeconds = 0;
+        //clearInterval(timer);
+        //timerDisplay.innerHTML = "00:00:00";
+        //hoursInput.value = "0";
+       // minutesInput.value = "0";
+       // secondsInput.value = "0";
+ 		//remainingSeconds = 0;
  	 	// 페이지 리로드
     	location.reload();
       
