@@ -82,7 +82,7 @@ button {
 <div id="timerContainer">
 	<div id="timer">00:00:00</div>
 	<div id="controlbtn">
-		<button class="btn btn" onclick="startTimer()">Start</button>
+		<button id="startBtn" class="btn btn" onclick="startTimer()">Start</button>
 		<button class="btn btn" onclick="stopTimer()">Stop</button>
 		<button class="btn btn" onclick="resetTimer()">Reset</button>
 	</div>
@@ -94,6 +94,9 @@ button {
         
         // 타이머 시작 함수
         function startTimer() {
+        	  // 버튼 비활성화
+            document.getElementById('startBtn').disabled = true;
+        	  
         	// 초기 총 초 변수 설정
             let totalSeconds = 0;
             // 1초 간격으로 실행되는 타이머 설정
@@ -112,6 +115,8 @@ button {
         function stopTimer() {
         	// 타이머 중지
             clearInterval(timer);
+            // 버튼 다시 활성화
+            document.getElementById('startBtn').disabled = false;
         }
         // 타이머 리셋 함수
         function resetTimer() {
@@ -119,6 +124,8 @@ button {
             clearInterval(timer);
             // 타이머 디스플레이 초기화
             timerDisplay.textContent = '00:00:00';
+            // 버튼 다시 활성화
+            document.getElementById('startBtn').disabled = false;
         }
         // 시간을 두 자리 수로 포맷팅하는 함수
         function formatTime(time) {
