@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<title>타이머</title>
+<style>
+@font-face {
+	font-family: 'NanumSquareRound';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	font-family: 'NanumSquareRound';
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	margin: 0;
+}
+
+#timerContainer {
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 12px;
+	backdrop-filter: blur(10px);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	max-width: 500px;
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+
+#timer {
+	font-size: 36px;
+	margin-bottom: 20px;
+	background-color: rgba(255, 255, 255, 0.7);
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#controls {
+	margin-top: 20px;
+}
+
+input, button {
+	padding: 10px;
+	margin: 5px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.3s ease-in-out, box-shadow 0.3s
+		ease-in-out;
+}
+
+input:focus, button:focus {
+	outline: none;
+}
+
+input {
+	width: 60px;
+}
+
+button {
+	cursor: pointer;
+}
+
+#controlbtn {
+	margin-top: 20px;
+	padding: 20px;
+}
+
+</style>
+</head>
+<body>
+<div id="timerContainer">
+	<div id="timer">00:00:00</div>
+	<div id="controlbtn">
+		<button class="btn btn" onclick="startTimer()">Start</button>
+		<button class="btn btn" onclick="stopTimer()">Stop</button>
+		<button class="btn btn" onclick="resetTimer()">Reset</button>
+	</div>
+</div>
+<script>
+		//전역 변수 선언
+        let timer;
+        let timerDisplay = document.getElementById('timer');
+        // 타이머 시작 함수
+        function startTimer() {
+        	// 초기 총 초 변수 설정
+            let totalSeconds = 0;
+            // 1초 간격으로 실행되는 타이머 설정
+            timer = setInterval(function () {
+            	// 총 초를 시, 분, 초로 변환
+                let hours = Math.floor(totalSeconds / 3600);
+                let minutes = Math.floor((totalSeconds % 3600) / 60);
+                let seconds = totalSeconds % 60;
+                // 타이머 디스플레이 업데이트
+                timerDisplay.textContent = formatTime(hours) + ':' + formatTime(minutes) + ':' + formatTime(seconds);
+                // 총 초 증가
+                totalSeconds++;
+            }, 1000);
+        }
+        // 타이머 중지 함수
+        function stopTimer() {
+        	// 타이머 중지
+            clearInterval(timer);
+        }
+        // 타이머 리셋 함수
+        function resetTimer() {
+        	 // 타이머 중지
+            clearInterval(timer);
+            // 타이머 디스플레이 초기화
+            timerDisplay.textContent = '00:00:00';
+        }
+        // 시간을 두 자리 수로 포맷팅하는 함수
+        function formatTime(time) {
+            return time < 10 ? '0' + time : time;
+        }
+</script>
+</body>
+</html>
