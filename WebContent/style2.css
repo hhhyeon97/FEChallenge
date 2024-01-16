@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'NanumSquareRound';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	font-family: 'NanumSquareRound';
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	margin: 0;
+}
+
+#timerContainer {
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 12px;
+	backdrop-filter: blur(10px);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	max-width: 500px;
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+
+#timer {
+	font-size: 36px;
+	margin-bottom: 20px;
+	background-color: rgba(255, 255, 255, 0.7);
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#controls {
+	margin-top: 20px;
+}
+
+input, button {
+	padding: 10px;
+	margin: 5px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.3s ease-in-out, box-shadow 0.3s
+		ease-in-out;
+}
+
+input:focus, button:focus {
+	outline: none;
+}
+
+input {
+	width: 60px;
+}
+
+button {
+	cursor: pointer;
+}
+
+#controlbtn {
+	margin-top: 20px;
+	padding: 20px;
+}
+
+#timeInput {
+	display: block; 
+	margin-top: 20px;
+}
+
+#timeInput.hidden {
+	display: none; 
+}
+

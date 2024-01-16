@@ -5,162 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <title>카운트다운 타이머</title>
-<style>
-@font-face {
-	font-family: 'NanumSquareRound';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-body {
-	font-family: 'NanumSquareRound';
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	margin: 0;
-}
-
-#timerContainer {
-	background-color: rgba(255, 255, 255, 0.6);
-	border-radius: 12px;
-	backdrop-filter: blur(10px);
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	padding: 20px;
-	max-width: 500px;
-	width: 100%;
-	text-align: center;
-	position: relative;
-}
-
-#timer {
-	font-size: 36px;
-	margin-bottom: 20px;
-	background-color: rgba(255, 255, 255, 0.7);
-	padding: 10px;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#controls {
-	margin-top: 20px;
-}
-
-input, button {
-	padding: 10px;
-	margin: 5px;
-	border: none;
-	border-radius: 5px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	transition: background-color 0.3s ease-in-out, box-shadow 0.3s
-		ease-in-out;
-}
-
-input:focus, button:focus {
-	outline: none;
-}
-
-input {
-	width: 60px;
-}
-
-button {
-	cursor: pointer;
-}
-
-#controlbtn {
-	margin-top: 20px;
-	padding: 20px;
-}
-
-#timeInput {
-	display: block; /* 초기에는 시간 입력 영역 보이기 */
-	margin-top: 20px;
-}
-
-#timeInput.hidden {
-	display: none; /* 카운트다운 시작 후에는 시간 입력 영역 숨기기 */
-}
-</style>
+<script type="text/javascript" src="timer2.js" defer></script>
+<link rel="stylesheet" href="style2.css">
 </head>
 <body>
 <div id="timerContainer">
 	<div id="timer">00:00:00</div>
 	 <div id="timeInput">
         <!-- 시간 입력 영역 -->
-        <label for="hours">Hours </label>
+        <label for="hours">시간</label>
         <input type="number" id="hours" min="0" value="0">
         
-        <label for="minutes">Minutes </label>
+        <label for="minutes">분</label>
         <input type="number" id="minutes" min="0" max="59" value="0">
         
-        <label for="seconds">Seconds </label>
+        <label for="seconds">초</label>
         <input type="number" id="seconds" min="0" max="59" value="0">
     </div>
 	<div id="controlbtn">
-		<button class="btn btn" onclick="startTimer()">Start</button>
+		<button id="startBtn" class="btn btn" onclick="startTimer()">Start</button>
 		<button class="btn btn" onclick="stopTimer()">Stop</button>
 		<button class="btn btn" onclick="resetTimer()">Reset</button>
 	</div>
 </div>
-<script>
-        let timer;
-        let hoursInput = document.getElementById('hours');
-        let minutesInput = document.getElementById('minutes');
-        let secondsInput = document.getElementById('seconds');
-        let timerDisplay = document.getElementById('timer');
-        let timeInput = document.getElementById('timeInput');
-
-        function startTimer() {
-            let totalSeconds = parseInt(hoursInput.value) * 3600 +
-                               parseInt(minutesInput.value) * 60 +
-                               parseInt(secondsInput.value);
-
-            if (totalSeconds > 0) {
-                // 카운트다운 시작 전에 시간 입력 영역 숨기기
-                timeInput.classList.add('hidden');
-
-                timer = setInterval(function () {
-                    if (totalSeconds <= 0) {
-                        clearInterval(timer);
-                        alert('타이머가 종료되었습니다!');
-                        timeInput.classList.remove('hidden');
-                        resetTimer(); // 타이머가 종료되면 리셋
-                    } else {
-                        let hours = Math.floor(totalSeconds / 3600);
-                        let minutes = Math.floor((totalSeconds % 3600) / 60);
-                        let seconds = totalSeconds % 60;
-
-                        timerDisplay.textContent = formatTime(hours) + ':' + formatTime(minutes) + ':' + formatTime(seconds);
-                        totalSeconds--;
-                    }
-                }, 1000);
-            }
-        }
-
-        function stopTimer() {
-            clearInterval(timer);
-            // 카운트다운 중지 후에 시간 입력 영역 보이기
-            timeInput.classList.remove('hidden');
-        }
-
-        function resetTimer() {
-            clearInterval(timer);
-            timerDisplay.textContent = '00:00:00';
-            hoursInput.value = 0;
-            minutesInput.value = 0;
-            secondsInput.value = 0;
-            // 타이머 리셋 후에 시간 입력 영역 보이기
-            timeInput.classList.remove('hidden');
-        }
-
-        function formatTime(time) {
-            return time < 10 ? '0' + time : time;
-        }
-</script>
 </body>
 </html>
