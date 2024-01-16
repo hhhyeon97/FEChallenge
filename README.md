@@ -1,5 +1,7 @@
 # <p align="center">RESAT-Challenge</p> <br>
 
+🔈 진행 기간 : 1/15 ~ 1/28(2주)
+
 ### 1주차
 -  github 리포지토리 생성
 -  카운트다운 타이머 구현
