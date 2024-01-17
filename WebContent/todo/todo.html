@@ -3,141 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>To-Do List</title>    
-<style>
-@font-face {
-	font-family: 'NanumSquareRound';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-body {
-	font-family: 'NanumSquareRound';
-	background-image: url("back.gif");
-	/*background-position: 50% 60%;*/
-	background-repeat: no-repeat;
-	background-size: cover;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	margin: 0;
-	flex-direction: column; /* 세로 중앙 정렬을 위한 추가 스타일 */
-}
-
-h2 {
-	font-family: 'yg-jalnan';
-	font-size: 35px; letter-spacing : 5px;
-	margin-bottom: 20px;
-	color: #95c9a4;
-	margin-top: 20px;
-	letter-spacing: 5px; /* 컨테이너 위에 위치시키기 위한 추가 스타일 */
-}
-
-.todo-container {
-	background-color: rgba(255, 255, 255, 0.6);
-	border-radius: 12px;
-	backdrop-filter: blur(1px);
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	padding: 20px;
-	max-width: 700px;
-	width: 100%;
-	min-height: 250px;
-	text-align: center;
-	position: relative;
-	overflow-y: auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	max-height: 700px;
-	height: auto;
-}
-
-input {
-	width: 60%;
-	padding: 8px;
-	box-sizing: border-box;
-	border: 3px solid rgba(206, 212, 218, 0.5);
-	border-radius: 4px;
-	transition: border-color 0.3s ease; /* 부드러운 전환을 위한 추가 스타일 */
-	margin-left: 20px;
-}
-
-input:focus {
-	border-color: #95c9a4;
-	outline: none;
-}
-
-#todoInput {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 20px;
-}
-
-#addBtn, #sortBtn{
-	padding : 10px;
-	background-color: white;
-	margin-left: 20px;
-	border : 2px solid #95c9a4;
-	color: gray;
-	border-radius: 6px;
-	transition: background-color 0.3s ease;
-}
-
-#addBtn:hover{
-	cursor: pointer;
-	background-color: #95c9a4;
-	color : #fff;
-}
-
-#sortBtn:hover{
-	cursor: pointer;
-}
-
-label {
-  color: gray;
-}
-
-/*select 박스  */
-#priorityCheckbox{
-    width: 120px;
-    border: 1px solid #C4C4C4;
-    box-sizing: border-box;
-    border-radius: 10px;
-    padding: 12px 13px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    margin-left: 10px;
-}
-
-#priorityCheckbox:focus{
-    border: 1px solid #95c9a4;
-    box-sizing: border-box;
-    border-radius: 10px;
-    outline: 3px solid #95c9a4;
-    border-radius: 10px;
-}
-
-ul li{
-	list-style: none;
-}
-
-.priority-1 { color: #c6c3e3; }
-.priority-2 { color: #99cf9b; }
-.priority-3 { color: #f0a96e; }
-.priority-4 { color: #6083db; }
-    
-</style>
+<title>To-Do List</title>   
+<link rel="stylesheet" href="style.css"> 
 </head>
 <body>
 <h2>To-Do List</h2>
 <div class="todo-container">
+        <div>
+            <button class="showBtn" onclick="showAllTasks()">전체</button>
+            <button class="showBtn" onclick="showCompletedTasks()">해결</button>
+            <button class="showBtn" onclick="showUncompletedTasks()">미해결</button>
+        </div>
 <div id="todoInput">
     <label for="priorityCheckbox">우선순위</label>
     <select id="priorityCheckbox" name="priority">
@@ -150,13 +26,81 @@ ul li{
 <button id="addBtn">추가</button>                 
 </div>
 <!-- ToDo 리스트 부분  -->
-<button id="sortBtn">우선순위 정렬</button>
-<ul id="todoList">
+        <ul id="todoList"></ul>
 
-</ul>
+<!--<button id="sortBtn">우선순위 정렬</button>-->
 </div>
-
 <script>
+
+// deleteTask 함수를 밖으로 빼서 전역 함수로 정의
+function deleteTask(listItem) {
+    listItem.parentNode.removeChild(listItem);
+}
+
+
+// editTask 함수 추가
+function editTask(listItem) {
+    var taskText = listItem.lastChild.previousSibling.textContent;
+    var priorityText = listItem.querySelector("strong").textContent;
+    var priority = getPriorityValue(priorityText);
+
+    // 수정 폼 생성
+    var editForm = document.createElement("div");
+    editForm.classList.add("edit-form");
+
+    var editInput = document.createElement("input");
+    editInput.type = "text";
+    editInput.value = taskText;
+
+    var saveButton = document.createElement("button");
+    saveButton.textContent = "저장";
+    saveButton.addEventListener("click", function () {
+        saveTask(listItem, editInput, priority);
+    });
+
+    var cancelButton = document.createElement("button");
+    cancelButton.textContent = "취소";
+    cancelButton.addEventListener("click", function () {
+        cancelEdit(listItem);
+    });
+
+    editForm.appendChild(editInput);
+    editForm.appendChild(saveButton);
+    editForm.appendChild(cancelButton);
+
+    // 수정 폼 삽입
+    listItem.appendChild(editForm);
+
+    // 원래 내용 숨김
+    listItem.firstChild.style.display = "none";
+    listItem.lastChild.style.display = "none";
+}
+
+// saveTask 함수 추가
+function saveTask(listItem, editInput, priority) {
+    var newTaskText = editInput.value;
+
+    // 수정된 내용으로 리스트 아이템 갱신
+    listItem.firstChild.textContent = newTaskText;
+    listItem.firstChild.style.display = ""; // 수정된 내용 보이게 함
+
+    // 수정 폼 제거
+    listItem.removeChild(listItem.lastChild);
+
+    // 에딧 버튼과 삭제 버튼 보이게 함
+    listItem.lastChild.style.display = "";
+}
+
+// cancelEdit 함수 추가
+function cancelEdit(listItem) {
+    // 에딧 폼 제거
+    listItem.removeChild(listItem.lastChild);
+
+    // 에딧 버튼과 삭제 버튼 보이게 함
+    listItem.firstChild.style.display = "";
+    listItem.lastChild.style.display = "";
+}
+
 document.getElementById("addBtn").addEventListener("click", function () {
             addTask();
         });
@@ -178,14 +122,18 @@ function addTask() {
     }
 
     // 새로운 리스트 아이템 생성
-    var listItem = document.createElement("li");
+   // var listItem = document.createElement("li");
 
-    // 우선순위 텍스트로 변경하여 보여주기
-    var priorityText = getPriorityText(priority);
-    //listItem.innerHTML = "<strong>" + priorityText + "</strong>: " + task;
-	listItem.innerHTML = "<strong class='priority-" + priority + "'>" + priorityText + "</strong>: " + task;
     
-	
+    // 새로운 리스트 아이템 생성  수정 
+    var listItem = createListItem(priority, task);
+    
+    
+    // 우선순위 텍스트로 변경하여 보여주기
+   //풀기 var priorityText = getPriorityText(priority);
+    //listItem.innerHTML = "<strong>" + priorityText + "</strong>: " + task;
+	// 풀기 listItem.innerHTML = "<strong class='priority-" + priority + "'>" + priorityText + "</strong>: " + task;
+    
 	// 할 일 목록에 추가
     document.getElementById("todoList").appendChild(listItem);
 
@@ -193,6 +141,84 @@ function addTask() {
     taskInput.value = "";
 }
 
+        function createListItem(priority, task) {
+            var listItem = document.createElement("li");
+            listItem.classList.add("priority-" + priority);
+
+            var priorityText = getPriorityText(priority);
+            listItem.innerHTML = "<strong class='priority-" + priority + "'>" + priorityText + "</strong>: " + task;
+
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.addEventListener("change", function () {
+                toggleCompleted(listItem, checkbox.checked);
+            });
+
+            
+
+            var editButton = document.createElement("button");
+            editButton.textContent = "수정";
+            editButton.classList.add("edit-btn"); // 에딧 버튼에 클래스 추가
+            editButton.addEventListener("click", function () {
+                editTask(listItem);
+            });
+
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "삭제";
+            deleteButton.classList.add("delete-btn"); // 삭제 버튼에 클래스 추가
+            deleteButton.addEventListener("click", function () {
+            	confirmDelete(deleteTask, listItem);
+            });
+
+            listItem.appendChild(checkbox);
+            listItem.appendChild(editButton);
+            listItem.appendChild(deleteButton);
+
+            return listItem;
+        }
+
+        function toggleCompleted(listItem, completed) {
+            if (completed) {
+                listItem.classList.add("completed");
+            } else {
+                listItem.classList.remove("completed");
+            }
+        }
+
+        function showAllTasks() {
+            showTasksByStatus(null);
+        }
+
+        function showCompletedTasks() {
+            showTasksByStatus(true);
+        }
+
+        function showUncompletedTasks() {
+            showTasksByStatus(false);
+        }
+
+        function showTasksByStatus(completed) {
+            var todoList = document.getElementById("todoList");
+            var items = Array.from(todoList.children);
+
+            items.forEach(function (item) {
+                var isCompleted = item.classList.contains("completed");
+                if (completed === null || isCompleted === completed) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+
+
+        function confirmDelete(callback, listItem) {
+            var confirmDelete = confirm("정말 삭제하시겠습니까?");
+            if (confirmDelete) {
+                callback(listItem);
+            }
+        }
+        
 function getPriorityText(value) {
     switch (value) {
         case "1":
@@ -207,8 +233,20 @@ function getPriorityText(value) {
             return "";
     }
 }
-
-        
+function getPriorityValue(text) {
+    switch (text) {
+        case "낮음":
+            return 1;
+        case "보통":
+            return 2;
+        case "높음":
+            return 3;
+        case "아주 높음":
+            return 4;
+        default:
+            return 0;
+    }
+}
     </script>
 </body>
 </html>
