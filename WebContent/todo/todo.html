@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>    
+<style>
+@font-face {
+	font-family: 'NanumSquareRound';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+body {
+	font-family: 'NanumSquareRound';
+	background-image: url("back.gif");
+	/*background-position: 50% 60%;*/
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	margin: 0;
+	flex-direction: column; /* 세로 중앙 정렬을 위한 추가 스타일 */
+}
+h2 {
+	font-family: 'yg-jalnan';
+	font-size : 35px;
+	letter-spacing: 5px;
+	margin-bottom: 20px;
+	color: #95c9a4;
+	margin-top: 20px; /* 컨테이너 위에 위치시키기 위한 추가 스타일 */
+} 
+ 
+.todo-container {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    backdrop-filter: blur(1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px; 
+    width: 100%;
+    min-height: 250px;
+    text-align: center;
+    position: relative;
+    overflow-y: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-height:700px;
+    height:auto;
+}
+</style>
+</head>
+<body>
+<h2>To-Do List</h2>
+<div class="todo-container">
+</div>
+</body>
+</html>
