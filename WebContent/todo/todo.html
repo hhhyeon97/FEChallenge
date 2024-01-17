@@ -13,6 +13,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
+
 body {
 	font-family: 'NanumSquareRound';
 	background-image: url("back.gif");
@@ -26,37 +27,188 @@ body {
 	margin: 0;
 	flex-direction: column; /* 세로 중앙 정렬을 위한 추가 스타일 */
 }
+
 h2 {
 	font-family: 'yg-jalnan';
-	font-size : 35px;
-	letter-spacing: 5px;
+	font-size: 35px; letter-spacing : 5px;
 	margin-bottom: 20px;
 	color: #95c9a4;
-	margin-top: 20px; /* 컨테이너 위에 위치시키기 위한 추가 스타일 */
-} 
- 
-.todo-container {
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 12px;
-    backdrop-filter: blur(1px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 500px; 
-    width: 100%;
-    min-height: 250px;
-    text-align: center;
-    position: relative;
-    overflow-y: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    max-height:700px;
-    height:auto;
+	margin-top: 20px;
+	letter-spacing: 5px; /* 컨테이너 위에 위치시키기 위한 추가 스타일 */
 }
+
+.todo-container {
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 12px;
+	backdrop-filter: blur(1px);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	max-width: 700px;
+	width: 100%;
+	min-height: 250px;
+	text-align: center;
+	position: relative;
+	overflow-y: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	max-height: 700px;
+	height: auto;
+}
+
+input {
+	width: 60%;
+	padding: 8px;
+	box-sizing: border-box;
+	border: 3px solid rgba(206, 212, 218, 0.5);
+	border-radius: 4px;
+	transition: border-color 0.3s ease; /* 부드러운 전환을 위한 추가 스타일 */
+	margin-left: 20px;
+}
+
+input:focus {
+	border-color: #95c9a4;
+	outline: none;
+}
+
+#todoInput {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+#addBtn, #sortBtn{
+	padding : 10px;
+	background-color: white;
+	margin-left: 20px;
+	border : 2px solid #95c9a4;
+	color: gray;
+	border-radius: 6px;
+	transition: background-color 0.3s ease;
+}
+
+#addBtn:hover{
+	cursor: pointer;
+	background-color: #95c9a4;
+	color : #fff;
+}
+
+#sortBtn:hover{
+	cursor: pointer;
+}
+
+label {
+  color: gray;
+}
+
+/*select 박스  */
+#priorityCheckbox{
+    width: 120px;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 12px 13px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    margin-left: 10px;
+}
+
+#priorityCheckbox:focus{
+    border: 1px solid #95c9a4;
+    box-sizing: border-box;
+    border-radius: 10px;
+    outline: 3px solid #95c9a4;
+    border-radius: 10px;
+}
+
+ul li{
+	list-style: none;
+}
+
+.priority-1 { color: #c6c3e3; }
+.priority-2 { color: #99cf9b; }
+.priority-3 { color: #f0a96e; }
+.priority-4 { color: #6083db; }
+    
 </style>
 </head>
 <body>
 <h2>To-Do List</h2>
 <div class="todo-container">
+<div id="todoInput">
+    <label for="priorityCheckbox">우선순위</label>
+    <select id="priorityCheckbox" name="priority">
+    <option value="1">낮음</option>
+    <option value="2">보통</option>
+    <option value="3">높음</option>
+    <option value="4">아주 높음</option>
+	</select>
+<input type="text" id="taskInput" placeholder="할 일을 작성해보아요 !">
+<button id="addBtn">추가</button>                 
 </div>
+<!-- ToDo 리스트 부분  -->
+<button id="sortBtn">우선순위 정렬</button>
+<ul id="todoList">
+
+</ul>
+</div>
+
+<script>
+document.getElementById("addBtn").addEventListener("click", function () {
+            addTask();
+        });
+
+document.getElementById("sortBtn").addEventListener("click", function () {
+    sortTasksByPriority();
+});
+
+function addTask() {
+    // 입력 필드에서 할 일과 우선순위를 가져오기
+    var taskInput = document.getElementById("taskInput");
+    var priorityCheckbox = document.getElementById("priorityCheckbox");
+    var task = taskInput.value;
+    var priority = priorityCheckbox.value;
+
+    if (task.trim() === "") {
+        alert("할 일을 입력하세요!");
+        return;
+    }
+
+    // 새로운 리스트 아이템 생성
+    var listItem = document.createElement("li");
+
+    // 우선순위 텍스트로 변경하여 보여주기
+    var priorityText = getPriorityText(priority);
+    //listItem.innerHTML = "<strong>" + priorityText + "</strong>: " + task;
+	listItem.innerHTML = "<strong class='priority-" + priority + "'>" + priorityText + "</strong>: " + task;
+    
+	
+	// 할 일 목록에 추가
+    document.getElementById("todoList").appendChild(listItem);
+
+    // 입력 필드 초기화
+    taskInput.value = "";
+}
+
+function getPriorityText(value) {
+    switch (value) {
+        case "1":
+            return "낮음";
+        case "2":
+            return "보통";
+        case "3":
+            return "높음";
+        case "4":
+            return "아주 높음";
+        default:
+            return "";
+    }
+}
+
+        
+    </script>
 </body>
 </html>
