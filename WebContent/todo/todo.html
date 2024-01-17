@@ -23,17 +23,16 @@
     <option value="3">높음</option>
     <option value="4">아주 높음</option>
 	</select>
-<input type="text" id="taskInput" placeholder="할 일..">
-<!--<button id="addBtn">추가</button>-->              
+<input type="text" id="taskInput" placeholder="할 일.." maxlength="20">
 <i id="addBtn" class='bx bx-message-square-add'></i>
 </div>
 <ul id="todoList"></ul>
 </div>
 <script>
 
-// deleteTask 함수를 밖으로 빼서 전역 함수로 정의
+//deleteTask 함수를 밖으로 빼서 전역 함수로 정의
 function deleteTask(listItem) {
-    listItem.parentNode.removeChild(listItem);
+ listItem.parentNode.removeChild(listItem);
 }
 
 document.getElementById("addBtn").addEventListener("click", function () {
@@ -45,11 +44,13 @@ document.getElementById("addBtn").addEventListener("click", function () {
 	    } else {
 	        addTask();
 	    }
-        });
+     });
 
 document.getElementById("sortBtn").addEventListener("click", function () {
-    sortTasksByPriority();
+ sortTasksByPriority();
 });
+
+
 
 function addTask() {
     // 입력 필드에서 할 일과 우선순위를 가져오기
@@ -72,50 +73,80 @@ function addTask() {
     taskInput.value = "";
 }
 
-	function createListItem(priority, task) {
-		var listItem = document.createElement("li");
-		listItem.classList.add("priority-" + priority);
 
-		var priorityText = getPriorityText(priority);
-		listItem.innerHTML = "<strong class='priority-" + priority + "'>"
-				+ priorityText + "</strong> " + task;
 
-		var checkbox = document.createElement("input");
-		checkbox.type = "checkbox";
-		checkbox.addEventListener("change", function() {
-			toggleCompleted(listItem, checkbox.checked);
-		});
 
-		var editButton = document.createElement("button");
-		editButton.textContent = "수정";
-		editButton.classList.add("edit-btn"); // 에딧 버튼에 클래스 추가
-		editButton.addEventListener("click", function() {
-			editTask(listItem);
-		});
+function createListItem(priority, task) {
+    // 새로운 li 요소 생성
+    var listItem = document.createElement("li");
 
-		var deleteButton = document.createElement("button");
-		deleteButton.textContent = "삭제";
-		deleteButton.classList.add("delete-btn"); // 삭제 버튼에 클래스 추가
-		deleteButton.addEventListener("click", function() {
-			confirmDelete(deleteTask, listItem);
-		});
+    // li에 우선순위 클래스 추가
+    listItem.classList.add("priority-" + priority);
 
-		listItem.appendChild(checkbox);
-		listItem.appendChild(editButton);
-		listItem.appendChild(deleteButton);
+    
+    // 체크박스 생성 및 이벤트 리스너 추가
+    var checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.addEventListener("change", function() {
+        toggleCompleted(listItem, checkbox.checked);
+    });
+    listItem.appendChild(checkbox);
+    
+    
+    // 우선순위 텍스트 생성 및 li에 추가
+    var priorityText = getPriorityText(priority);
+    var priorityElement = document.createElement("strong");
+    priorityElement.classList.add("priority-" + priority);
+    priorityElement.textContent = priorityText;
+    listItem.appendChild(priorityElement);
 
-		return listItem;
-	}
-	
-/* 전체/완료/미완료로 리스트 나누기 */	
-	
-function toggleCompleted(listItem, completed) {
-		if (completed) {
-			listItem.classList.add("completed");
-		} else {
-			listItem.classList.remove("completed");
-		}
+    // 할 일 텍스트 생성 및 li에 추가
+    var taskTextNode = document.createTextNode(" " + task);
+    listItem.appendChild(taskTextNode);
+
+    // 수정 버튼 생성 및 클래스 추가, 이벤트 리스너 추가
+    var editButton = document.createElement("button");
+    editButton.textContent = "수정";
+    editButton.classList.add("edit-btn");
+    editButton.addEventListener("click", function() {
+        editTask(listItem);
+    });
+    listItem.appendChild(editButton);
+
+    // 삭제 버튼 생성 및 클래스 추가, 이벤트 리스너 추가
+    var deleteButton = document.createElement("button");
+    deleteButton.textContent = "삭제";
+    deleteButton.classList.add("delete-btn");
+    deleteButton.addEventListener("click", function() {
+        confirmDelete(deleteTask, listItem);
+    });
+    listItem.appendChild(deleteButton);
+
+    /*
+    // 수정과 삭제 버튼을 감싸는 div 요소 생성
+    var buttonsDiv = document.createElement("div");
+    buttonsDiv.classList.add("buttons-wrapper");
+    buttonsDiv.appendChild(editButton);
+    buttonsDiv.appendChild(deleteButton);
+
+    // buttonsDiv를 listItem에 추가
+    listItem.appendChild(buttonsDiv);
+    */
+    
+    
+    // 생성된 li 반환
+    return listItem;
 }
+
+
+function toggleCompleted(listItem, completed) {
+	if (completed) {
+		listItem.classList.add("completed");
+	} else {
+		listItem.classList.remove("completed");
+	}
+}
+
 
 
 function showAllTasks() {

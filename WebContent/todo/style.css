@@ -45,7 +45,7 @@ h2 {
 	backdrop-filter: blur(1px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	padding: 20px;
-	max-width: 600px;
+	max-width: 630px;
 	width: 100%;
 	min-height: 400px;
 	text-align: center;
@@ -65,11 +65,11 @@ h2 {
 	border: 3px solid rgba(206, 212, 218, 0.5);
 	border-radius: 4px;
 	transition: border-color 0.3s ease; /* 부드러운 전환을 위한 추가 스타일 */
-	margin-left: 10px;
+	margin-left: 35px;
 }
 
 #taskInput:focus {
-	border-color: #a3ada0;
+	border-color: #95c9a4;
 	outline: none;
 }
 
@@ -98,7 +98,6 @@ option:hover {
 .bx.bx-message-square-add {
   color: rgba(206, 212, 218, 0.5);
   font-size: 40px;
-  margin-right: 20px;
   position: relative;
   left: 20px;
 }
@@ -136,9 +135,9 @@ option:hover {
  
 button.edit-btn {
         background-color: #fff;
-        color: #black;
+        color: black;
         padding: 5px 10px;
-        border: 2px solid #3498db;
+        border: 1px solid #3498db;
         cursor: pointer;
         border-radius: 3px;
         margin-right: 5px; 
@@ -147,9 +146,9 @@ button.edit-btn {
 
 button.delete-btn {
         background-color: #fff;
-        color: #black;
+        color: black;
         padding: 5px 10px;
-        border: 2px solid #e74c3c;
+        border: 1px solid #e74c3c;
         cursor: pointer;
         border-radius: 3px;
     }
@@ -166,28 +165,51 @@ button.delete-btn {
     font-weight: 300;
     font-size: 12px;
     line-height: 16px;
-    margin-left: 30px;
+    margin-left: 50px;
 }
 
 #priorityCheckbox:focus{
-    border: 1px solid #b1d199;
+    border: 1px solid #95c9a4;
     box-sizing: border-box;
     border-radius: 10px;
-    outline: 3px solid #b1d199;
+    outline: 3px solid #95c9a4;
     border-radius: 10px;
 }
 
-ul li{
-	list-style: none;
-	float:left;
+#todoList {
+  display: flex;
+  flex-direction: column; /* 수직으로 나타나도록 설정 */
+  align-items: flex-start; /* 왼쪽 정렬 */
 }
 
-#todoList li{
-	margin-bottom : 20px;
+ul li {
+  list-style: none;
+  margin-bottom: 20px; /* 각 리스트 아이템 사이에 간격 설정 */
 }
 
-.priority-1 { color: #c6c3e3; }
-.priority-2 { color: #99cf9b; }
-.priority-3 { color: #f0a96e; }
-.priority-4 { color: #6083db; }
+ul li input[type="checkbox"] {
+ 	margin-right: 10px; /* 체크박스 우측 간격 조절 */
+}
+
+
+ul li button {
+	margin-left: 15px;
+}
+
+/*
+ul li .buttons-wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+
+
+ul li .buttons-wrapper button {
+  margin-left: 10px; 
+}
+*/
+
+.priority-1 strong { color: #c6c3e3; }
+.priority-2 strong { color: #99cf9b; }
+.priority-3 strong { color: #f0a96e; }
+.priority-4 strong { color: #6083db; }
 .completed { text-decoration: line-through; }  
