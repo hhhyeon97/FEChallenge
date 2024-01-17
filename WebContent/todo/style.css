@@ -9,6 +9,13 @@
 	font-style: normal;
 }
 
+@font-face {
+    font-family: 'JalnanGothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
 	font-family: 'NanumSquareRound';
 	background-image: url("back.gif");
@@ -24,10 +31,10 @@ body {
 }
 
 h2 {
-	font-family: 'yg-jalnan';
-	font-size: 35px; letter-spacing : 5px;
+	font-family: 'JalnanGothic';
+	font-size: 40px; letter-spacing : 5px;
 	margin-bottom: 20px;
-	color: #95c9a4;
+	color: #aad19d;
 	margin-top: 20px;
 	letter-spacing: 5px; /* 컨테이너 위에 위치시키기 위한 추가 스타일 */
 }
@@ -38,9 +45,9 @@ h2 {
 	backdrop-filter: blur(1px);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	padding: 20px;
-	max-width: 700px;
+	max-width: 600px;
 	width: 100%;
-	min-height: 250px;
+	min-height: 400px;
 	text-align: center;
 	position: relative;
 	overflow-y: auto;
@@ -50,19 +57,24 @@ h2 {
 	height: auto;
 }
 
-input {
-	width: 60%;
+#taskInput {
+	width: 50%;
+	height: 50px;
 	padding: 8px;
 	box-sizing: border-box;
 	border: 3px solid rgba(206, 212, 218, 0.5);
 	border-radius: 4px;
 	transition: border-color 0.3s ease; /* 부드러운 전환을 위한 추가 스타일 */
-	margin-left: 20px;
+	margin-left: 10px;
 }
 
-input:focus {
-	border-color: #95c9a4;
+#taskInput:focus {
+	border-color: #a3ada0;
 	outline: none;
+}
+
+option:hover {
+  background-color: green; /* option 요소의 텍스트 색상을 녹색으로 변경 */
 }
 
 #todoInput {
@@ -70,22 +82,31 @@ input:focus {
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 20px;
+	margin-top: 35px;
+	margin-right: 60px;
 }
 
-#addBtn, #sortBtn{
+#sortBtn{
 	padding : 10px;
 	background-color: white;
-	margin-left: 20px;
 	border : 2px solid #95c9a4;
 	color: gray;
 	border-radius: 6px;
 	transition: background-color 0.3s ease;
 }
 
+.bx.bx-message-square-add {
+  color: rgba(206, 212, 218, 0.5);
+  font-size: 40px;
+  margin-right: 20px;
+  position: relative;
+  left: 20px;
+}
+.bx.bx-message-square-add:hover{
+	color : #95c9a4;
+}
 #addBtn:hover{
 	cursor: pointer;
-	background-color: #95c9a4;
-	color : #fff;
 }
 
 #sortBtn:hover{
@@ -97,17 +118,20 @@ input:focus {
 }
 
 .showBtn{
-	width : 25%;
+	width : 20%;
 	padding : 10px;
 	background-color: white;
-	margin-left: 20px;
-	border : 2px solid #95c9a4;
+	margin: 15px;
+	border : 3px solid #b1d199;
 	color: gray;
 	border-radius: 6px;
 	margin-bottom: 20px;
+	transition: background-color 0.3s ease;
 }
 .showBtn:hover{
 	cursor: pointer;
+	background-color: #b1d199;
+	color : #fff;
 }
  
 button.edit-btn {
@@ -130,64 +154,36 @@ button.delete-btn {
         border-radius: 3px;
     }
 
-/* 체크박스 스타일 */
-input[type="checkbox"] {
-        margin-right: 5px; /* 체크박스 오른쪽 간격 조정 */
-        transform: translateY(2px); /* 수직 정렬 조정 */
-}
-
-/* 수정 폼 스타일 */
-.edit-form {
-	display: none;
-	margin-top: 5px; /* 수정 폼과 다음 리스트 간격 조정 */
-}
-
-.edit-form input[type="text"] {
-	width: 200px; /* 수정 폼 너비 조정 */
-	padding: 3px;
-}
-
-.edit-form button {
-	background-color: #2ecc71;
-	color: #fff;
-	padding: 3px 5px;
-	border: none;
-	cursor: pointer;
-	border-radius: 3px;
-	margin-left: 5px;
-}
-/* 수정폼 end */
-
-label {
-  color: gray;
-}
-
 /*select 박스  */
 #priorityCheckbox{
-    width: 120px;
+    width: 130px;
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
     border-radius: 10px;
-    padding: 12px 13px;
+    padding: 15px 15px;
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
+    font-weight: 300;
+    font-size: 12px;
     line-height: 16px;
-    margin-left: 10px;
+    margin-left: 30px;
 }
 
 #priorityCheckbox:focus{
-    border: 1px solid #95c9a4;
+    border: 1px solid #b1d199;
     box-sizing: border-box;
     border-radius: 10px;
-    outline: 3px solid #95c9a4;
+    outline: 3px solid #b1d199;
     border-radius: 10px;
 }
 
 ul li{
 	list-style: none;
 	float:left;
+}
+
+#todoList li{
+	margin-bottom : 20px;
 }
 
 .priority-1 { color: #c6c3e3; }
