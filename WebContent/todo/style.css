@@ -142,6 +142,8 @@ button.edit-btn {
         border-radius: 3px;
         margin-right: 5px; 
         margin-left: 50px;
+        position: fixed;
+		left: 400px;
     }
 
 button.delete-btn {
@@ -151,6 +153,8 @@ button.delete-btn {
         border: 1px solid #e74c3c;
         cursor: pointer;
         border-radius: 3px;
+        position: fixed;
+		left: 520px;
     }
 
 /*select 박스  */
@@ -184,29 +188,13 @@ button.delete-btn {
 
 ul li {
   list-style: none;
-  margin-bottom: 20px; /* 각 리스트 아이템 사이에 간격 설정 */
+  margin-bottom: 30px; /* 각 리스트 아이템 사이에 간격 설정 */
 }
 
 ul li input[type="checkbox"] {
  	margin-right: 10px; /* 체크박스 우측 간격 조절 */
 }
 
-
-ul li button {
-	margin-left: 15px;
-}
-
-/*
-ul li .buttons-wrapper {
-  display: flex;
-  align-items: flex-end;
-}
-
-
-ul li .buttons-wrapper button {
-  margin-left: 10px; 
-}
-*/
 
 .priority-1 strong { color: #c6c3e3; }
 .priority-2 strong { color: #99cf9b; }

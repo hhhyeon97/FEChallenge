@@ -23,7 +23,7 @@
     <option value="3">높음</option>
     <option value="4">아주 높음</option>
 	</select>
-<input type="text" id="taskInput" placeholder="할 일.." maxlength="20">
+<input type="text" id="taskInput" placeholder="할 일.." maxlength="16">
 <i id="addBtn" class='bx bx-message-square-add'></i>
 </div>
 <ul id="todoList"></ul>
@@ -121,18 +121,6 @@ function createListItem(priority, task) {
         confirmDelete(deleteTask, listItem);
     });
     listItem.appendChild(deleteButton);
-
-    /*
-    // 수정과 삭제 버튼을 감싸는 div 요소 생성
-    var buttonsDiv = document.createElement("div");
-    buttonsDiv.classList.add("buttons-wrapper");
-    buttonsDiv.appendChild(editButton);
-    buttonsDiv.appendChild(deleteButton);
-
-    // buttonsDiv를 listItem에 추가
-    listItem.appendChild(buttonsDiv);
-    */
-    
     
     // 생성된 li 반환
     return listItem;
