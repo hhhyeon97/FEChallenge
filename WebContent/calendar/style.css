@@ -1,18 +1,7 @@
 @charset "UTF-8";
 
- /*#1 */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
  
- /*#2 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
- 
- /*#3 */
 button {
   /* button 요소에 기본적으로 설정되는 스타일 속성 초기화 */
   border: none;
@@ -22,11 +11,59 @@ button {
   cursor: pointer;
 }
  
- /*#4 */
 body {
+    background: rgb(238,174,202);
+	background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
+}
+
+.wrapper {
+    width: 450px;
+    background: rgba(255, 255, 255, 0.5); /* 0.8은 80%의 불투명도 */
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px); /* 블러 */
+    height: auto;
+}
+.wrapper .nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-image: url("61.webp");
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.wrapper .nav button {
+  width: 38px;
+  height: 38px;
+  font-size: 30px;
+}
+#calendar {
+    width: 80%;
+    max-width: 450px; /* 최대 너비 설정 */
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 추가 */
+}
+
+#calendar table {
+    width: 100%;
+    text-align: center; /* 테이블 내부의 텍스트 가운데 정렬 */
+}
+
+
+i.bxs-chevron-right, i.bxs-chevron-left {
+	font-size: 30px;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    user-select: none;
 }
