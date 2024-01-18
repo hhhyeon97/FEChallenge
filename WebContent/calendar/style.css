@@ -57,8 +57,12 @@ body {
 #calendar table {
     width: 100%;
     text-align: center; /* 테이블 내부의 텍스트 가운데 정렬 */
+    
 }
 
+#calendar table td {
+	padding : 10px;
+}
 
 i.bxs-chevron-right, i.bxs-chevron-left {
 	font-size: 30px;

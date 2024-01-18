@@ -21,14 +21,50 @@
   	<div id="calendar"></div>
 </div>    
 <script>
+
+
+
+
+
+//월을 변경하고 달력을 다시 그리는 함수
+function changeMonth(monthOffset) {
+  var currentDate = new Date();
+  var newMonth = currentDate.getMonth() + monthOffset;
+  var newYear = currentDate.getFullYear();
+
+  // 새로운 월이 0보다 작으면 이전 해로 이동
+  if (newMonth < 0) {
+      newMonth = 11; // 12월로 설정
+      newYear -= 1; // 이전 해로 이동
+  }
+
+  // 새로운 월이 11보다 크면 다음 해로 이동
+  if (newMonth > 11) {
+      newMonth = 0; // 1월로 설정
+      newYear += 1; // 다음 해로 이동
+  }
+
+  // 변경된 월에 따라 달력을 다시 그림
+  generateCalendar(newYear, newMonth);
+
+  // 변경된 월에 따라 현재 날짜를 갱신
+  highlightCurrentDate();
+}
+
+
+
+
+
 //달력을 생성하고 표시하는 함수
 function generateCalendar() {
+
     // 현재 날짜 가져오기
     var currentDate = new Date();
 
     // 달력의 년도와 월 설정
     var year = currentDate.getFullYear();
     var month = currentDate.getMonth();
+
 
     // 달력의 헤더 생성
     var headerHTML = `<h2 style="color:#fff; text-align:center; position:relative; bottom: 55px;">${year}년 ${month + 1}월</h2>`;
@@ -118,19 +154,35 @@ function highlightCurrentDate() {
     calendarCells.forEach(function (cell) {
         var cellDay = parseInt(cell.innerText); // 셀에 표시된 날짜를 정수로 변환
         if (cellDay === currentDay) {
-            cell.style.color = 'gray'; 
-            cell.style.borderRadius = '50%';
-            cell.style.border = '2px solid #99c7a5';
+            cell.style.color = 'white'; 
+            //cell.style.borderRadius = '50%';
+            cell.style.borderRadius = '10px';
+            //cell.style.border = '2px solid #99c7a5';
+            cell.style.backgroundColor = '#ccc1db';
         }
     });
 }
+
 
 // 페이지 로드 시 달력 생성
 window.onload = function () {
     generateCalendar();
     
- // 현재 날짜에 초록색 스타일 추가
+ // 현재 날짜에 스타일 추가
     highlightCurrentDate();
+ 
+ 
+    // 좌우 화살표 아이콘에 클릭 이벤트 추가
+    var prevMonthIcon = document.querySelector('.bxs-chevron-left');
+    var nextMonthIcon = document.querySelector('.bxs-chevron-right');
+
+    prevMonthIcon.addEventListener('click', function () {
+        changeMonth(-1); // 이전 월로 이동
+    });
+
+    nextMonthIcon.addEventListener('click', function () {
+        changeMonth(1); // 다음 월로 이동
+    });
  
 };
 </script>
