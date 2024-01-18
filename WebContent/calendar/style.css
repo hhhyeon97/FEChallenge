@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+ /*#1 */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+ 
+ /*#2 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+ 
+ /*#3 */
+button {
+  /* button 요소에 기본적으로 설정되는 스타일 속성 초기화 */
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+ 
+ /*#4 */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: url("61.webp");
+}
