@@ -74,6 +74,22 @@ i.bxs-chevron-right, i.bxs-chevron-left {
 
 /*메모 관련 스타일 */
 
+/* 스타일 추가: 저장된 메모가 있는 날짜 표시 */
+.memo-date {
+  position: relative;
+}
+
+.memo-date:before {
+  content: '●';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 8px;
+  color: #ff80c0;
+}
+
+
+
 /* 스타일 추가: 메모 작성 창 */
 .modal {
   display: none;

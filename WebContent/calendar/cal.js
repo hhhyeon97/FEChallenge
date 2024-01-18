@@ -6,6 +6,10 @@
 var currentYear = new Date().getFullYear();
 var currentMonth = new Date().getMonth();
 
+// 클릭된 날짜를 저장하는 변수
+var selectedDate = null;
+
+
 //달력을 생성하고 표시하는 함수
 function generateCalendar() {
     // 달력의 헤더 생성
@@ -75,7 +79,88 @@ function generateCalendar() {
     // 생성된 달력을 달력 컨테이너에 추가
     var calendarContainer = document.getElementById("calendar");
     calendarContainer.innerHTML = calendarHTML;
+    
+    
+// 클릭 가능한 날짜에 이벤트 추가 및 호버 포인터 기능 추가
+var dateCells = document.querySelectorAll('#calendar table td[style=""]');
+dateCells.forEach(function (cell) {
+    cell.addEventListener('mouseover', function () {
+        cell.style.cursor = 'pointer';
+        // 여기에 호버 시 추가적인 스타일이나 동작을 추가할 수 있습니다.
+        // 예를 들어, 특정 배경색이나 테두리를 변경하는 등의 작업을 수행할 수 있습니다.
+    });
+
+    cell.addEventListener('mouseout', function () {
+        // 호버가 끝날 때의 동작을 추가할 수 있습니다.
+        // 예를 들어, 이전의 스타일로 복원하는 등의 작업을 수행할 수 있습니다.
+    });
+
+    cell.addEventListener('click', function () {
+        
+         // 클릭한 날짜에 대한 메모 작성 창 띄우기
+        var date = new Date(currentYear, currentMonth, parseInt(cell.innerText));
+        var dateString = date.toISOString().split('T')[0]; // YYYY-MM-DD 형식으로 변환
+
+        // 이전에 저장된 메모 불러오기
+        var storedMemo = localStorage.getItem(dateString) || '';
+
+        // 원 모양으로 표시
+        cell.classList.add('memo-date');
+
+        // 사용자에게 입력 받기
+        var userMemo = prompt('메모를 입력하세요 !', storedMemo);
+
+        // 입력이 있을 경우 로컬 스토리지에 저장
+        if (userMemo !== null) {
+            localStorage.setItem(dateString, userMemo);
+            // 여기에서 메모를 어딘가에 표시하거나 처리할 수 있음
+            alert('메모가 저장되었습니다.');
+        }
+        
+        // 메모 확인 및 수정, 삭제 기능 추가
+        if (localStorage.getItem(dateString)) {
+            showMemoOptions(dateString, cell);
+        }
+        
+    });
+        
+});
+    
 }
+
+
+// 메모 확인, 수정, 삭제 기능
+function showMemoOptions(dateString, cell) {
+    var storedMemo = localStorage.getItem(dateString);
+
+    var memoModal = document.getElementById('memoModal');
+    var memoInput = document.getElementById('memoInput');
+    var saveMemoButton = document.getElementById('saveMemo');
+    var closeMemoButton = document.querySelector('.close');
+
+    // 메모 모달 창에 저장된 메모 불러오기
+    memoInput.value = storedMemo;
+
+    // 메모 모달 창 띄우기
+    memoModal.style.display = 'block';
+
+    // 저장 버튼 클릭 시
+    saveMemoButton.onclick = function () {
+        var updatedMemo = memoInput.value;
+        localStorage.setItem(dateString, updatedMemo);
+        alert('메모가 업데이트되었습니다.');
+        memoModal.style.display = 'none';
+        cell.classList.add('memo-date');
+    };
+
+    // 모달 창 닫기 버튼 클릭 시
+    closeMemoButton.onclick = function () {
+        memoModal.style.display = 'none';
+    };
+}
+
+
+
 
 // 페이지 로드 시 현재 월에 해당하는 달력 표시
 window.onload = function () {
@@ -94,7 +179,41 @@ window.onload = function () {
     nextMonthIcon.addEventListener('click', function () {
         changeMonth(1); // 다음 월로 이동
     });
+    
+  
+  
 };
+
+
+function openMemoPopup(dateString) {
+    const memoPopup = document.getElementById('memo-popup');
+    const memoText = document.getElementById('memo-text');
+    
+    memoText.value = localStorage.getItem(dateString) || '';
+    
+    memoPopup.style.display = 'block';
+}
+
+
+function closeMemoPopup() {
+    const memoPopup = document.getElementById('memo-popup');
+    memoPopup.style.display = 'none';
+}
+
+function saveMemo() {
+    const memoPopup = document.getElementById('memo-popup');
+    const memoText = document.getElementById('memo-text');
+    const dateString = selectedDate; // 여기서 selectedDate는 어떻게 설정되는지에 따라 수정이 필요합니다.
+
+    // 선택한 날짜에 대한 메모를 저장
+    localStorage.setItem(dateString, memoText.value);
+
+    // 메모 팝업을 닫고, 달력을 다시 렌더링
+    closeMemoPopup();
+    generateCalendar(); // 여기서 generateCalendar 함수가 달력을 다시 그리도록 해야 합니다.
+}
+
+
 
 // 이전 월 또는 다음 월로 이동하는 함수
 function changeMonth(direction) {
