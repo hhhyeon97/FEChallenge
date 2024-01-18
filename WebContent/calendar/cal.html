@@ -4,23 +4,14 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge; chrome=1">
 <!--chrome을 사용하는 유저에게 렌더링해주는 코드 -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
 	rel='stylesheet'>
 <title>MyCalendar</title>
 <link rel="stylesheet" href="style.css">
-<script type="text/javascript" src="cal.js"></script>
+<script type="text/javascript" src="test.js"></script>
 </head>
 <body>
-
-  <div id="memoModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <textarea id="memoInput" placeholder="&#127911; 메모..."></textarea>
-      <button id="saveMemo">저장</button>
-    </div>
-  </div>
-
 	<div class="wrapper">
 		<div class="nav">
 			<i class='bx bxs-chevron-left'></i> <i class='bx bxs-chevron-right'></i>
@@ -30,5 +21,15 @@
 		</div>
 		<div id="calendar"></div>
 	</div>
+	 <!-- 메모장 영역 -->
+  <div id="memoContainer" class="memo-container">
+  <h3 style="text-align:center; color: #fff;">Memo</h3>
+    <textarea id="memoTextArea" placeholder="&#127911; 메모를 입력하세요..." readonly></textarea>
+    <div class="button-container">
+      <button id="saveMemo">메모</button>
+      <button id="editMemo">수정</button>
+      <button id="deleteMemo">삭제</button>
+    </div>
+    </div>
 </body>
 </html>
