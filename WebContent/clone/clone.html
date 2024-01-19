@@ -6,19 +6,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <title>clone</title>
 <style>
-.noto-sans kr-<uniquifier> {
-  font-family: "Noto Sans KR", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
 
 body{
 	margin: 0;
 	padding: 0;
     font-family: "Noto Sans KR", sans-serif;
+
 }
 
 nav {
@@ -27,16 +23,16 @@ nav {
 	background-color: #fff;
 	padding: 15px;
 	width: auto;
-	height: 70px;
-	line-height: 70px;
+	height: 80px;
+	line-height: 80px;
 	display: flex;
 	justify-content: space-between;
+	border-bottom: 2px solid rgb(229, 234, 234);
 }
-
 
 nav a {
   text-decoration: none;
-  color: lightgray;
+  color: #ced2d9;
   margin: 0 10px;
   position: relative;
   overflow: hidden;
@@ -47,7 +43,7 @@ nav a::before {
   position: absolute;
   left: 50%;
   width: 0;
-  top: 130%; /* 아래에서 시작하도록 조절 */
+  top: 145%; /* 아래에서 시작하도록 조절 */
   height: 2px;
   background-color: #70b5fa; /* 초기 언더라인 색상 */
   transition: width 0.3s ease, left 0.3s ease; /* 너비와 위치에 대한 트랜지션 */
@@ -71,10 +67,11 @@ nav a:hover{
 	margin-left: 30px;
 }
 
-
+.right-links {
+	margin-right: 50px;
+}
 
 footer {
-	position: fixed;
 	bottom: 0px;
 	left: 0px;
 	width: 100%;
@@ -83,32 +80,137 @@ footer {
 	background-color: #fff;
 	text-align: center;
 	border-top: 1px solid rgb(229, 234, 234);
+	display: flex;
+	padding-left : 30px;
+	display: flex;
+  	justify-content: center; /* 수평 중앙 정렬 */
+  	align-items: center; /* 수직 중앙 정렬 */
+    flex-direction: column; /* 수직 정렬을 위해 컬럼 방향으로 설정 */
 }
 
+
+#rightbar {
+  margin-left: auto; /* #fooContainer 내부에서 오른쪽 정렬 */
+}
+
+/* 아이콘 크기에 맞게 조절 */
+#fooContainer svg {
+  margin-right: 100px; /* 아이콘과 텍스트 사이 간격 조절 */
+}
+
+#rightbar a {
+  text-decoration: none;
+  color: #1A1B1C;
+  margin-right: 15px; /* 각 링크 간격 조절 */
+}
+
+#rightbar a:last-child {
+  margin-right: 0; /* 마지막 링크의 간격은 0으로 설정 */
+}
+
+
+#fooContainer {
+  display: flex;
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+#additionalInfo {
+  text-align: center; /* 푸터 전체의 정렬을 위해 중앙 정렬 설정 */
+  margin-top: 10px; /* 추가 정보와 상단 간격 조절 */
+}
+
+#additionalInfo p {
+  margin: 5px 0;
+  color: #1A1B1C;
+}
+
+
 section {
-	position: fixed;
-	top: 70px;
+	top: 80px;
 	left: 0px;
 	width: 100%;
 	height: 100%;
 	background-color: #fff;
-	overflow-y: auto;
+	padding-bottom: 200px;
+	   /* overflow-y: auto;*/
 }
 
 #lo:hover{
 	cursor: pointer;
 }
 
+#con1,#con2{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 30px;	  
+}
+
+#one{
+  margin-top: 50px;
+  width: 600px;
+  height: 350px;
+  position: relative;
+  left : 200px;
+  border-radius: 10px;
+  background: url('https://miniintern.com/static/images/main/main_img_1_T.webp') center/cover;
+  cursor: pointer;
+}
+#two{
+  margin-top: 100px;
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  margin-right: 100px;
+  background: url('https://miniintern.com/static/images/main/main_img_r_1_T_temporary_small.webp') center/cover;
+  cursor: pointer;
+}
+
+#test{
+   position: relative;
+background-size: cover;
+background-image: url("https://miniintern.com/static/images/main/main_img_r_1_T_temporary_small.webp");
+ height: 310px;
+      width: 300px;
+}
+
+ #textInImage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 20px;
+      text-align: center;
+    }
+    
+#logotext {
+	position:relative;
+	top: 10px;
+	right: 75px;
+	color: lightgray;
+	font-size: 12px;
+}
+#logo{
+}
+
+#con2text{
+	margin-bottom: 10px;
+	margin-left: 200px;
+	font-size: 27px;
+	position: relative;
+	bottom: 55px;
+}
 </style>
 </head>
 <body>
-	<nav>
+	<nav role="banner">
 		<div id="logo">
-			<svg id="lo" xmlns="http://www.w3.org/2000/svg" width="135" height="24"
-				viewBox="0 0 135 24">
+			<svg id="lo" xmlns="http://www.w3.org/2000/svg" width="150" height="24"
+				viewBox="0 0 150 24">
 				<path
 					d="M46.165 18.974l2.21-1.637a10.497 10.497 0 008.227 3.994c3.246 0 6.255-1.506 8.26-3.994l2.21 1.637C64.607 22.15 60.715 24 56.602 24c-4.097 0-8.006-1.85-10.437-5.026zM135 7.956v7.94h-3.383V8.284c0-1.408-.934-2.685-2.447-2.62-1.241.05-2.21.884-2.822 1.949v8.283h-3.4V3.422h3.4v1.735c1.105-1.26 2.38-1.965 4.114-1.981C133.3 3.143 135 5.271 135 7.956zm-89.226 0v7.94h-3.382V8.284c0-1.408-.935-2.685-2.448-2.62-1.24.05-2.21.884-2.821 1.949v8.283h-3.4V3.422h3.4v1.735c1.104-1.26 2.38-1.965 4.113-1.981 2.838-.033 4.538 2.095 4.538 4.78zm34.047 0v7.94h-3.383V8.284c0-1.408-.935-2.685-2.448-2.62-1.24.05-2.21.884-2.821 1.949v8.283h-3.4V3.422h3.4v1.735c1.104-1.26 2.379-1.965 4.113-1.981 2.839-.033 4.539 2.095 4.539 4.78zM51.91 7.94l2.464-1.9V3.423h-3.671v12.474h3.671V9.872L51.91 7.94zm51.524.442c-.135-1.604-.866-3.045-2.617-3.045-1.75 0-2.584 1.342-2.77 3.045h5.387zm3.298 1.506v.475h-8.737c.188 2.292 1.649 3.389 3.876 3.389 1.768 0 3.144-.557 4.572-1.523v2.456c-1.479.933-2.89 1.44-5.1 1.44-3.994 0-6.713-2.406-6.713-6.483 0-3.716 2.21-6.564 6.102-6.548 4.402.016 6.051 2.898 6 6.794zM60.307 7.94l2.465-1.9V3.423H59.1v12.474h3.672V9.872L60.307 7.94zm59.735-4.027v3.421c-1.173-.998-3.008-1.195-4.385-.344-.629.393-1.343 1.146-1.853 2.243v6.663h-3.4V3.422h3.4v2.914c.8-1.932 2.312-3.062 3.706-3.16 1.172-.082 2.04.294 2.532.737zM84.682.95L87.944 0v3.601h3.944v2.145h-3.944v5.763c-.017 1.228.646 1.915 1.785 1.932.918.016 1.496-.197 2.295-.524v2.52c-1.071.476-2.04.689-3.094.689-2.55 0-4.25-1.572-4.25-4.257V5.746h-2.056V3.601h2.056V.95zM25.325 15.896h3.4V3.422h-3.4v12.474zM11.507 5.664c1.156-1.49 2.652-2.455 4.538-2.488 2.907-.05 4.59 2.145 4.59 4.731v7.99h-3.4V8.463c0-1.408-.697-2.8-2.294-2.8-1.14 0-2.278.786-2.958 1.949v8.283H8.601V8.4c0-1.425-.833-2.735-2.329-2.735-1.24 0-2.278.852-2.873 1.949v8.283H0V3.422h3.4v1.735c1.138-1.26 2.43-1.948 4.147-1.981 1.818-.033 3.195.917 3.96 2.488z"
 					fill="#1A1B1C" fill-rule="evenodd"></path></svg>
+		<span id="logotext">2주만에 실무 경험을 만드세요</span>
 		</div>
 		<div class="left-links">
 			<a href="#">미니인턴</a> <a href="#">스킬업</a> <a href="#">M클래스</a> <a
@@ -119,9 +221,52 @@ section {
 				href="#" style="color: #8ac7ed">기업회원</a>
 		</div>
 	</nav>
-	<section></section>
+	<section>
+	
+	<div id="con1">
+	 <div id="one">
+	 <div id="textInImage">최대한의 효율로<br>직무경험을 쌓아 보세요<br>2주만에 실무 경험을 만드는, 미니인턴</div>
+	 </div>
+	<div id="two"></div>
+	</div>
+
+	<div id="con2">
+	
+	<span id="con2text">미니인턴으로 취업하세요</span>
+	<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
+	<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
+	</div> <!-- con2 -->
+	
+	
+	</section>
 
 	<footer>
+	
+	<div id="fooContainer">
+	<svg xmlns="http://www.w3.org/2000/svg" width="135" height="24" viewBox="0 0 135 24"><path d="M46.165 18.974l2.21-1.637a10.497 10.497 0 008.227 3.994c3.246 0 6.255-1.506 8.26-3.994l2.21 1.637C64.607 22.15 60.715 24 56.602 24c-4.097 0-8.006-1.85-10.437-5.026zM135 7.956v7.94h-3.383V8.284c0-1.408-.934-2.685-2.447-2.62-1.241.05-2.21.884-2.822 1.949v8.283h-3.4V3.422h3.4v1.735c1.105-1.26 2.38-1.965 4.114-1.981C133.3 3.143 135 5.271 135 7.956zm-89.226 0v7.94h-3.382V8.284c0-1.408-.935-2.685-2.448-2.62-1.24.05-2.21.884-2.821 1.949v8.283h-3.4V3.422h3.4v1.735c1.104-1.26 2.38-1.965 4.113-1.981 2.838-.033 4.538 2.095 4.538 4.78zm34.047 0v7.94h-3.383V8.284c0-1.408-.935-2.685-2.448-2.62-1.24.05-2.21.884-2.821 1.949v8.283h-3.4V3.422h3.4v1.735c1.104-1.26 2.379-1.965 4.113-1.981 2.839-.033 4.539 2.095 4.539 4.78zM51.91 7.94l2.464-1.9V3.423h-3.671v12.474h3.671V9.872L51.91 7.94zm51.524.442c-.135-1.604-.866-3.045-2.617-3.045-1.75 0-2.584 1.342-2.77 3.045h5.387zm3.298 1.506v.475h-8.737c.188 2.292 1.649 3.389 3.876 3.389 1.768 0 3.144-.557 4.572-1.523v2.456c-1.479.933-2.89 1.44-5.1 1.44-3.994 0-6.713-2.406-6.713-6.483 0-3.716 2.21-6.564 6.102-6.548 4.402.016 6.051 2.898 6 6.794zM60.307 7.94l2.465-1.9V3.423H59.1v12.474h3.672V9.872L60.307 7.94zm59.735-4.027v3.421c-1.173-.998-3.008-1.195-4.385-.344-.629.393-1.343 1.146-1.853 2.243v6.663h-3.4V3.422h3.4v2.914c.8-1.932 2.312-3.062 3.706-3.16 1.172-.082 2.04.294 2.532.737zM84.682.95L87.944 0v3.601h3.944v2.145h-3.944v5.763c-.017 1.228.646 1.915 1.785 1.932.918.016 1.496-.197 2.295-.524v2.52c-1.071.476-2.04.689-3.094.689-2.55 0-4.25-1.572-4.25-4.257V5.746h-2.056V3.601h2.056V.95zM25.325 15.896h3.4V3.422h-3.4v12.474zM11.507 5.664c1.156-1.49 2.652-2.455 4.538-2.488 2.907-.05 4.59 2.145 4.59 4.731v7.99h-3.4V8.463c0-1.408-.697-2.8-2.294-2.8-1.14 0-2.278.786-2.958 1.949v8.283H8.601V8.4c0-1.425-.833-2.735-2.329-2.735-1.24 0-2.278.852-2.873 1.949v8.283H0V3.422h3.4v1.735c1.138-1.26 2.43-1.948 4.147-1.981 1.818-.033 3.195.917 3.96 2.488z" fill="#1A1B1C" fill-rule="evenodd"></path></svg>
+	<div id="rightbar">
+	<a href="#">이용약관</a> <a href="#">개인정보취급방침</a> <a href="#">새로운 소식</a> <a href="#">자주하는 질문</a>
+	</div>
+	</div>
+	<!-- 
+	 <div id="additionalInfo">
+	<p>(주)오픈놀 | 대표이사 : 권인택 | 이메일 : help@miniintern.com | 문의 : 070-8221-3056</p>
+	<p>서울특별시 영등포구 양평로 2 주식회사 오픈놀 | 사업자등록번호 : 110-81-99930</p>
+	<p>직업정보제공사업 : 서울서부 제2018-19호 | 통신판매업신고 : 제2021-서울영등포-2467호 | 유료직업소개사업등록번호 : 제2021-3180239-14-5-00015호</p>
+ 	 </div>
+	 -->
 	</footer>
 </body>
 </html>
