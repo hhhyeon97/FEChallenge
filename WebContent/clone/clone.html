@@ -139,10 +139,17 @@ section {
 	cursor: pointer;
 }
 
-#con1,#con2{
+#con1,#con2,#con3,#con4 {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 30px;	  
+}
+
+#con3,#con4 {
+flex-direction: row; /* 수직 정렬을 위해 컬럼 방향으로 설정 */
+padding: 30px;
+position:relative;
+bottom: 80px;
 }
 
 #one{
@@ -151,36 +158,32 @@ section {
   height: 350px;
   position: relative;
   left : 200px;
-  border-radius: 10px;
+  border-radius: 7px;
   background: url('https://miniintern.com/static/images/main/main_img_1_T.webp') center/cover;
   cursor: pointer;
 }
 #two{
   margin-top: 100px;
-  width: 300px;
-  height: 400px;
-  object-fit: cover;
+  width: 250px;
+  height: 350px;
+  position: relative;
+  bottom: 50px;
+  right: 160px;
+  border-radius: 7px;
   margin-right: 100px;
   background: url('https://miniintern.com/static/images/main/main_img_r_1_T_temporary_small.webp') center/cover;
   cursor: pointer;
-}
-
-#test{
-   position: relative;
-background-size: cover;
-background-image: url("https://miniintern.com/static/images/main/main_img_r_1_T_temporary_small.webp");
- height: 310px;
-      width: 300px;
+  
 }
 
  #textInImage {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 0; /* 상단에 정렬 */
+      left: 0; /* 왼쪽에 정렬 */
       color: white;
-      font-size: 20px;
-      text-align: center;
+      font-size: 25px;
+      padding: 20px; /* 텍스트 주변에 간격을 주기 위한 패딩 설정 */
+      box-sizing: border-box; /* 패딩이 요소 크기에 영향을 미치지 않도록 설정 */
     }
     
 #logotext {
@@ -189,6 +192,7 @@ background-image: url("https://miniintern.com/static/images/main/main_img_r_1_T_
 	right: 75px;
 	color: lightgray;
 	font-size: 12px;
+	cursor: pointer;
 }
 #logo{
 }
@@ -196,10 +200,18 @@ background-image: url("https://miniintern.com/static/images/main/main_img_r_1_T_
 #con2text{
 	margin-bottom: 10px;
 	margin-left: 200px;
-	font-size: 27px;
+	font-size: 23px;
 	position: relative;
-	bottom: 55px;
+	bottom:55px;
 }
+
+
+/* 카드 */
+.card {
+	
+}
+
+
 </style>
 </head>
 <body>
@@ -220,37 +232,96 @@ background-image: url("https://miniintern.com/static/images/main/main_img_r_1_T_
 			<a href="#">서비스소개</a> <a href="#" style="color: #8ac7ed">회원가입</a> <a href="#" style="color: #8ac7ed">로그인</a> <a
 				href="#" style="color: #8ac7ed">기업회원</a>
 		</div>
-	</nav>
-	<section>
+	</nav>  <!-- 상단 바 end -->
+	
+	<section>  <!-- 내용 부분 시작 -->
 	
 	<div id="con1">
 	 <div id="one">
-	 <div id="textInImage">최대한의 효율로<br>직무경험을 쌓아 보세요<br>2주만에 실무 경험을 만드는, 미니인턴</div>
+	 <div id="textInImage">최대한의 효율로<br>직무경험을 쌓아 보세요<br><span style="margin-top: 35px; font-size: 20px;">2주만에 실무 경험을 만드는, 미니인턴</span></div>
 	 </div>
 	<div id="two"></div>
 	</div>
 
 	<div id="con2">
 	
-	<span id="con2text">미니인턴으로 취업하세요</span>
-	<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
+	<span id="con2text">미니인턴으로 취업하세요
+	<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="main-project-tooltip-svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"></path><path d="M12 3a9 9 0 110 18 9 9 0 010-18zm.6 12h-1.7v1.7h1.7V15zm-.536-8c-.246 0-.496.023-.752.068a5.807 5.807 0 00-.755.188 7.083 7.083 0 00-1.357.598l.697 1.511c.388-.191.762-.353 1.125-.485.362-.132.7-.198 1.015-.198.36 0 .628.084.803.253a.853.853 0 01.263.642c0 .169-.018.317-.054.444-.037.128-.096.25-.178.366a2.17 2.17 0 01-.321.352 9.9 9.9 0 01-.486.404c-.218.173-.405.34-.56.502a2.582 2.582 0 00-.38.499c-.098.17-.17.351-.218.54-.048.19-.072.4-.072.632v.506h1.804v-.41c0-.146.013-.272.038-.38a.925.925 0 01.14-.31c.069-.1.163-.207.284-.318.12-.112.277-.243.468-.393.25-.2.47-.391.66-.571a3.17 3.17 0 00.472-.56c.125-.194.22-.404.283-.63a2.83 2.83 0 00.096-.769c0-.391-.07-.74-.209-1.045a2.155 2.155 0 00-.598-.78 2.679 2.679 0 00-.95-.489A4.388 4.388 0 0012.064 7z" fill="#384040"></path></g></svg>
+	<br><span style="font-size: 15px;">이제 집, 학교, 도서관, 카페에서 인턴십을 경험하고, 실무역량평가로 취업하세요</span>
+	&nbsp;&nbsp;<span style="margin-left: 235px; font-size: 15px; cursor: pointer; color:#17A1FF;">&#8594; 모든 기업과제 보기</span>
+	</span>
+	</div>
+	
+	<div id="con3">
+	
+	<div class="card" style="width: 16rem;">
+  <img src="cardimg01.png" class="card-img-top" alt="...">
   <div class="card-body">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text">온라인 커리어 플랫폼 '워크위즈'의 콘텐츠 기획 및 운영</p>
   </div>
 </div>
 
-	<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
+	<div class="card" style="width: 16rem;">
+  <img src="cardimg01.png" class="card-img-top" alt="...">
   <div class="card-body">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text">펀딩 프로젝트 웹 상세 페이지 기획 및 디자인</p>
   </div>
 </div>
 
-	</div> <!-- con2 -->
+
+	<div class="card" style="width: 16rem;">
+  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">펀딩 프로젝트 웹 상세 페이지 기획 및 디자인</p>
+  </div>
+</div>
+
+	<div class="card" style="width: 16rem;">
+  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">펀딩 프로젝트 웹 상세 페이지 기획 및 디자인</p>
+  </div>
+</div>
+
+	</div>
 	
 	
-	</section>
+	<div id="con4">
+	
+	<div class="card" style="width: 16rem;">
+  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">온라인 커리어 플랫폼 '워크위즈'의 콘텐츠 기획 및 운영</p>
+  </div>
+</div>
+
+	<div class="card" style="width: 16rem;">
+  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">펀딩 프로젝트 웹 상세 페이지 기획 및 디자인</p>
+  </div>
+</div>
+
+
+	<div class="card" style="width: 16rem;">
+  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">펀딩 프로젝트 웹 상세 페이지 기획 및 디자인</p>
+  </div>
+</div>
+
+	<div class="card" style="width: 16rem;">
+  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">펀딩 프로젝트 웹 상세 페이지 기획 및 디자인</p>
+  </div>
+</div>
+
+	</div>
+	
+	
+	
+	</section><!-- 내용 end -->
 
 	<footer>
 	
@@ -259,14 +330,14 @@ background-image: url("https://miniintern.com/static/images/main/main_img_r_1_T_
 	<div id="rightbar">
 	<a href="#">이용약관</a> <a href="#">개인정보취급방침</a> <a href="#">새로운 소식</a> <a href="#">자주하는 질문</a>
 	</div>
-	</div>
-	<!-- 
-	 <div id="additionalInfo">
+	<!--
+    <div id="additionalInfo">
 	<p>(주)오픈놀 | 대표이사 : 권인택 | 이메일 : help@miniintern.com | 문의 : 070-8221-3056</p>
 	<p>서울특별시 영등포구 양평로 2 주식회사 오픈놀 | 사업자등록번호 : 110-81-99930</p>
 	<p>직업정보제공사업 : 서울서부 제2018-19호 | 통신판매업신고 : 제2021-서울영등포-2467호 | 유료직업소개사업등록번호 : 제2021-3180239-14-5-00015호</p>
  	 </div>
-	 -->
+ 	   -->
+	</div>
 	</footer>
 </body>
 </html>
