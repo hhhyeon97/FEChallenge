@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -75,8 +75,8 @@ footer {
 	bottom: 0px;
 	left: 0px;
 	width: 100%;
-	height: 100px;
-	line-height: 100px;
+	height: 150px;
+	line-height: 150px;
 	background-color: #fff;
 	text-align: center;
 	border-top: 1px solid rgb(229, 234, 234);
@@ -115,8 +115,9 @@ footer {
 }
 
 #additionalInfo {
+  font-size : 12px;
   text-align: center; /* 푸터 전체의 정렬을 위해 중앙 정렬 설정 */
-  margin-top: 10px; /* 추가 정보와 상단 간격 조절 */
+
 }
 
 #additionalInfo p {
@@ -139,17 +140,22 @@ section {
 	cursor: pointer;
 }
 
-#con1,#con2,#con3,#con4 {
+#con1,#con2,#con3,#con4,#con5,#conImg,
+#conImg2,#con6,#con7,#con6Card,#con8,#box8 {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 30px;	  
 }
 
-#con3,#con4 {
+#con3,#con4,#con6Card,#con8 {
 flex-direction: row; /* 수직 정렬을 위해 컬럼 방향으로 설정 */
 padding: 30px;
 position:relative;
 bottom: 80px;
+}
+
+#con8{
+	
 }
 
 #one{
@@ -164,17 +170,17 @@ bottom: 80px;
 }
 #two{
   margin-top: 100px;
-  width: 250px;
+  width: 260px;
   height: 350px;
   position: relative;
   bottom: 50px;
   right: 160px;
   border-radius: 7px;
   margin-right: 100px;
-  background: url('https://miniintern.com/static/images/main/main_img_r_1_T_temporary_small.webp') center/cover;
+  background-image : url("two.png");
   cursor: pointer;
-  
 }
+
 
  #textInImage {
       position: absolute;
@@ -197,7 +203,7 @@ bottom: 80px;
 #logo{
 }
 
-#con2text{
+#con2text,#con5text,#con6text,#con7text{
 	margin-bottom: 10px;
 	margin-left: 200px;
 	font-size: 23px;
@@ -205,12 +211,44 @@ bottom: 80px;
 	bottom:55px;
 }
 
+#conImg{
+	position: relative;
+	bottom: 65px;
+
+}
+
+#conImg img{
+	width: 100%;
+}
+
+#conImg2 img{
+	margin-left: 70px;
+	margin-bottom: 30px;
+}
+
+
+#box8 div{
+	/* 다음 수정 - > 2개씩 4줄 되게 적용하기 !!! */
+	
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	width: 200px;
+	hieght :100px;
+	border : 2px solid lightgray;
+	padding : 10px;
+}
 
 /* 카드 */
 .card {
-	
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.card:hover .card-img-top {
+  border: 3px solid orange;
+}
+
+.card:hover .card-img-top1 {
+  border: 3px solid #a5d6a7;
+}
 
 </style>
 </head>
@@ -229,8 +267,8 @@ bottom: 80px;
 				href="#">채용관</a> <a href="#">해피폴리오</a>
 		</div>
 		<div class="right-links">
-			<a href="#">서비스소개</a> <a href="#" style="color: #8ac7ed">회원가입</a> <a href="#" style="color: #8ac7ed">로그인</a> <a
-				href="#" style="color: #8ac7ed">기업회원</a>
+			<a href="#">서비스소개</a> <a href="#" style="color: #17A1FF">회원가입</a> <a href="#" style="color: #17A1FF">로그인</a> <a
+				href="#" style="color: #17A1FF">기업회원</a>
 		</div>
 	</nav>  <!-- 상단 바 end -->
 	
@@ -246,7 +284,7 @@ bottom: 80px;
 	<div id="con2">
 	
 	<span id="con2text">미니인턴으로 취업하세요
-	<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="main-project-tooltip-svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"></path><path d="M12 3a9 9 0 110 18 9 9 0 010-18zm.6 12h-1.7v1.7h1.7V15zm-.536-8c-.246 0-.496.023-.752.068a5.807 5.807 0 00-.755.188 7.083 7.083 0 00-1.357.598l.697 1.511c.388-.191.762-.353 1.125-.485.362-.132.7-.198 1.015-.198.36 0 .628.084.803.253a.853.853 0 01.263.642c0 .169-.018.317-.054.444-.037.128-.096.25-.178.366a2.17 2.17 0 01-.321.352 9.9 9.9 0 01-.486.404c-.218.173-.405.34-.56.502a2.582 2.582 0 00-.38.499c-.098.17-.17.351-.218.54-.048.19-.072.4-.072.632v.506h1.804v-.41c0-.146.013-.272.038-.38a.925.925 0 01.14-.31c.069-.1.163-.207.284-.318.12-.112.277-.243.468-.393.25-.2.47-.391.66-.571a3.17 3.17 0 00.472-.56c.125-.194.22-.404.283-.63a2.83 2.83 0 00.096-.769c0-.391-.07-.74-.209-1.045a2.155 2.155 0 00-.598-.78 2.679 2.679 0 00-.95-.489A4.388 4.388 0 0012.064 7z" fill="#384040"></path></g></svg>
+	<svg style="cursor: pointer;" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="main-project-tooltip-svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"></path><path d="M12 3a9 9 0 110 18 9 9 0 010-18zm.6 12h-1.7v1.7h1.7V15zm-.536-8c-.246 0-.496.023-.752.068a5.807 5.807 0 00-.755.188 7.083 7.083 0 00-1.357.598l.697 1.511c.388-.191.762-.353 1.125-.485.362-.132.7-.198 1.015-.198.36 0 .628.084.803.253a.853.853 0 01.263.642c0 .169-.018.317-.054.444-.037.128-.096.25-.178.366a2.17 2.17 0 01-.321.352 9.9 9.9 0 01-.486.404c-.218.173-.405.34-.56.502a2.582 2.582 0 00-.38.499c-.098.17-.17.351-.218.54-.048.19-.072.4-.072.632v.506h1.804v-.41c0-.146.013-.272.038-.38a.925.925 0 01.14-.31c.069-.1.163-.207.284-.318.12-.112.277-.243.468-.393.25-.2.47-.391.66-.571a3.17 3.17 0 00.472-.56c.125-.194.22-.404.283-.63a2.83 2.83 0 00.096-.769c0-.391-.07-.74-.209-1.045a2.155 2.155 0 00-.598-.78 2.679 2.679 0 00-.95-.489A4.388 4.388 0 0012.064 7z" fill="#384040"></path></g></svg>
 	<br><span style="font-size: 15px;">이제 집, 학교, 도서관, 카페에서 인턴십을 경험하고, 실무역량평가로 취업하세요</span>
 	&nbsp;&nbsp;<span style="margin-left: 235px; font-size: 15px; cursor: pointer; color:#17A1FF;">&#8594; 모든 기업과제 보기</span>
 	</span>
@@ -255,14 +293,14 @@ bottom: 80px;
 	<div id="con3">
 	
 	<div class="card" style="width: 16rem;">
-  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <img src="card01.png" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text">온라인 커리어 플랫폼 '워크위즈'의 콘텐츠 기획 및 운영</p>
   </div>
 </div>
 
 	<div class="card" style="width: 16rem;">
-  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <img src="card02.png" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text">펀딩 프로젝트 웹 상세 페이지 기획 및 디자인</p>
   </div>
@@ -270,16 +308,16 @@ bottom: 80px;
 
 
 	<div class="card" style="width: 16rem;">
-  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <img src="card03.png" class="card-img-top1" alt="...">
   <div class="card-body">
-    <p class="card-text">펀딩 프로젝트 웹 상세 페이지 기획 및 디자인</p>
+    <p class="card-text">행사인력 구인구직 서비스 기업 '행아웃' CI 디자인 제안</p>
   </div>
 </div>
 
 	<div class="card" style="width: 16rem;">
-  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <img src="card04.png" class="card-img-top" alt="...">
   <div class="card-body">
-    <p class="card-text">펀딩 프로젝트 웹 상세 페이지 기획 및 디자인</p>
+    <p class="card-text">스타트업 특성을 고려한 사업비 예산 수립 및 지출 관리 효율화 방안 제안</p>
   </div>
 </div>
 
@@ -289,14 +327,93 @@ bottom: 80px;
 	<div id="con4">
 	
 	<div class="card" style="width: 16rem;">
-  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <img src="card05.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">뷰티 브랜드 트리앤씨의 SNS 마케팅 콘텐츠 제작 및 카피라이팅</p>
+  </div>
+</div>
+
+	<div class="card" style="width: 16rem;">
+  <img src="card06.png" class="card-img-top1" alt="...">
+  <div class="card-body">
+    <p class="card-text">구름맨션 마인드셋 키트 판매를 위한 제품 상세페이지 기획 및 디자인</p>
+  </div>
+</div>
+
+
+	<div class="card" style="width: 16rem;">
+  <img src="card07.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">유입된 고객의 전환율을 높이기 위한 웹 페이지 UI/UX 개선</p>
+  </div>
+</div>
+
+	<div class="card" style="width: 16rem;">
+  <img src="card08.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">자산 관리 서비스 ‘블루버튼’을 효과적으로 알릴 수 있는 피드 광고 콘텐츠 기획</p>
+  </div>
+</div>
+
+	</div>
+	
+	
+	<div id="conImg">
+	<img src="conImg.png">
+	</div>
+	
+	
+	<div id="con5">
+	
+	<span id="con5text">채용중인 기업을 확인하세요
+	<br><span style="font-size: 15px;">내게 맞는 기업을 찾았나요? 바로 지원해 보세요</span>
+	&nbsp;&nbsp;<span style="margin-left: 235px; font-size: 15px; cursor: pointer; color:#17A1FF;">&#8594; 모든 채용정보 보기</span>
+	</span>
+	</div>
+	
+	<!--
+	<div id="box8">
+	<div>1</div>
+	<div>2</div>
+	
+	<div>3</div>
+	<div>4</div>
+	
+	<div>5</div>
+	<div>6</div>
+	
+	<div>7</div>
+	<div>8</div>
+	</div>
+	
+	-->
+	
+	
+	<div id="conImg2">
+	<img src="conImg2.png">
+	</div>
+	
+	
+	
+	<div id="con6">
+	<span id="con6text">M클래스를 신청하세요
+	<br><span style="font-size: 15px;">미니인턴만의 색깔을 가진 교육을 제공해 드려요</span>
+	&nbsp;&nbsp;<span style="margin-left: 235px; font-size: 15px; cursor: pointer; color:#17A1FF;">&#8594; 모든 M클래스 보기</span>
+	</span>
+	</div>
+	
+	
+	<div id="con6Card">
+	
+	<div class="card" style="width: 16rem;">
+  <img src="card01.png" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text">온라인 커리어 플랫폼 '워크위즈'의 콘텐츠 기획 및 운영</p>
   </div>
 </div>
 
 	<div class="card" style="width: 16rem;">
-  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <img src="card02.png" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text">펀딩 프로젝트 웹 상세 페이지 기획 및 디자인</p>
   </div>
@@ -304,16 +421,59 @@ bottom: 80px;
 
 
 	<div class="card" style="width: 16rem;">
-  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <img src="card03.png" class="card-img-top1" alt="...">
+  <div class="card-body">
+    <p class="card-text">행사인력 구인구직 서비스 기업 '행아웃' CI 디자인 제안</p>
+  </div>
+</div>
+
+	<div class="card" style="width: 16rem;">
+  <img src="card04.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">스타트업 특성을 고려한 사업비 예산 수립 및 지출 관리 효율화 방안 제안</p>
+  </div>
+</div>
+
+	</div>
+	
+	
+	<div id="con7">
+	<span id="con7text">해피폴리오로 취업 정보를 받으세요
+	<br><span style="font-size: 15px;">검증된 현직자의 취업 스토리로 취준 전략을 세우세요</span>
+	&nbsp;&nbsp;<span style="margin-left: 235px; font-size: 15px; cursor: pointer; color:#17A1FF;">&#8594; 모든 해피폴리오 보기</span>
+	</span>
+	</div>	
+	
+	
+	
+	<div id="con8">
+	
+	<div class="card" style="width: 16rem;">
+  <img src="card01.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">온라인 커리어 플랫폼 '워크위즈'의 콘텐츠 기획 및 운영</p>
+  </div>
+</div>
+
+	<div class="card" style="width: 16rem;">
+  <img src="card02.png" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text">펀딩 프로젝트 웹 상세 페이지 기획 및 디자인</p>
   </div>
 </div>
 
+
 	<div class="card" style="width: 16rem;">
-  <img src="cardimg01.png" class="card-img-top" alt="...">
+  <img src="card03.png" class="card-img-top1" alt="...">
   <div class="card-body">
-    <p class="card-text">펀딩 프로젝트 웹 상세 페이지 기획 및 디자인</p>
+    <p class="card-text">행사인력 구인구직 서비스 기업 '행아웃' CI 디자인 제안</p>
+  </div>
+</div>
+
+	<div class="card" style="width: 16rem;">
+  <img src="card04.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">스타트업 특성을 고려한 사업비 예산 수립 및 지출 관리 효율화 방안 제안</p>
   </div>
 </div>
 
@@ -330,14 +490,15 @@ bottom: 80px;
 	<div id="rightbar">
 	<a href="#">이용약관</a> <a href="#">개인정보취급방침</a> <a href="#">새로운 소식</a> <a href="#">자주하는 질문</a>
 	</div>
+		</div>
 	<!--
     <div id="additionalInfo">
-	<p>(주)오픈놀 | 대표이사 : 권인택 | 이메일 : help@miniintern.com | 문의 : 070-8221-3056</p>
-	<p>서울특별시 영등포구 양평로 2 주식회사 오픈놀 | 사업자등록번호 : 110-81-99930</p>
-	<p>직업정보제공사업 : 서울서부 제2018-19호 | 통신판매업신고 : 제2021-서울영등포-2467호 | 유료직업소개사업등록번호 : 제2021-3180239-14-5-00015호</p>
+	<p>(주)오픈놀 | 대표이사 : 권인택 | 이메일 : help@miniintern.com | 문의 : 070-8221-3056
+	서울특별시 영등포구 양평로 2 주식회사 오픈놀 | 사업자등록번호 : 110-81-99930
+	직업정보제공사업 : 서울서부 제2018-19호 | 통신판매업신고 : 제2021-서울영등포-2467호 | 유료직업소개사업등록번호 : 제2021-3180239-14-5-00015호
  	 </div>
- 	   -->
-	</div>
+ 	 -->
+
 	</footer>
 </body>
 </html>
