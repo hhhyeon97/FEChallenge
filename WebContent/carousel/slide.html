@@ -2,50 +2,79 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=0.5">
 <title>slide</title>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <style>
-*{
+* {
 	box-sizing: border-box;
 }
 
-#slider-container{
-	width:500px;
-	height:300px;
+body {
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+#slider-container {
+	width: 500px;
+	height: 300px;
 	overflow: hidden; /* 슬라이드 컨테이너를 벗어나는 이미지 숨김 */
 	position: relative;
 }
 
-#slider-container > #slider{
-	display:flex;
-	transition : transform 0.2s;
+#slider-container>#slider {
+	display: flex;
+	transition: transform 0.5s ease; /* 0.5초 동안 부드럽게 변화 */
 }
 
-#slider-container > #slider > .slide {
-    flex: 0 0 100%; /* flex item의 크기를 고정시킴 */
+#slider-container>#slider>.slide {
+	flex: 0 0 100%; /* flex item의 크기를 고정시킴 */
 }
 
-#slider-container > #slider > .slide > img {
+#slider-container>#slider>.slide>img {
 	width: 100%; /* 이미지를 100%의 너비로 표시하여 슬라이드 영역에 맞춤 */
-	height: auto; /* 가로 비율 유지를 위해 높이를 자동으로 조정 */
+	height: auto%; /* 가로 비율 유지를 위해 높이를 자동으로 조정 */
 }
 
+#prev, #next {
+	color: gray;
+	opacity: 0.8;
+	font-size: 30px;
+}
+
+#prev {
+	position: absolute;
+	top: 50%;
+	left: 80px;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+#next {
+	position: absolute;
+	top: 50%;
+	right: 80px;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
 
 <div id="slider-container">
         <div id="slider">
-            <div class="slide"><img src="card1.jpg" alt="Image 1"></div>
+            <div class="slide"><img src="https://i.pinimg.com/originals/2b/43/b1/2b43b1c8a51fe9ae9aa9286611c82085.gif" alt="Image 1"></div>
             <div class="slide"><img src="card2.jpg" alt="Image 2"></div>
             <div class="slide"><img src="card3.jpg" alt="Image 3"></div>
-            <div class="slide"><img src="card4.jpg" alt="Image 4"></div>
         </div>
     </div>
         <i id="prev" class='bx bxs-chevron-left' onclick="prevSlide()"></i>
         <i id="next" class='bx bxs-chevron-right' onclick="nextSlide()"></i>
 <script>
+
 const prevBtn = document.querySelector('#prev');
 const nextBtn = document.querySelector('#next');
 const carousel = document.querySelector('#slider');
@@ -57,14 +86,36 @@ function showSlide() {
 }
 
 function nextSlide() {
-    index = (index + 1) % 4;
+    index = (index + 1) % 3;
     showSlide();
 }
 
 function prevSlide() {
-    index = (index - 1 + 4) % 4;
+    index = (index - 1 + 3) % 3;
     showSlide();
 }
+
+
+
+function startAutoSlide() {
+    timer = setInterval(() => {
+        nextSlide();
+    }, 3000); // 3초 간격으로 자동 슬라이드
+}
+
+function stopAutoSlide() {
+    clearInterval(timer);
+}
+
+// 페이지 로딩 후 자동 슬라이드 시작
+startAutoSlide();
+
+// 마우스가 슬라이드 영역에 진입하면 자동 슬라이드 중지
+carousel.addEventListener('mouseenter', stopAutoSlide);
+
+// 마우스가 슬라이드 영역을 빠져나가면 자동 슬라이드 재시작
+carousel.addEventListener('mouseleave', startAutoSlide);
+
 
 </script>
 </body>
