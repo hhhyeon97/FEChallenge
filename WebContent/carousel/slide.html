@@ -40,30 +40,31 @@
             <div class="slide"><img src="card1.jpg" alt="Image 1"></div>
             <div class="slide"><img src="card2.jpg" alt="Image 2"></div>
             <div class="slide"><img src="card3.jpg" alt="Image 3"></div>
-           <!--<div class="slide"><img src="card4.jpg" alt="Image 4"></div>-->
+            <div class="slide"><img src="card4.jpg" alt="Image 4"></div>
         </div>
     </div>
         <i id="prev" class='bx bxs-chevron-left' onclick="prevSlide()"></i>
         <i id="next" class='bx bxs-chevron-right' onclick="nextSlide()"></i>
 <script>
-
 const prevBtn = document.querySelector('#prev');
 const nextBtn = document.querySelector('#next');
 const carousel = document.querySelector('#slider');
 
 let index = 0;
 
-prevBtn.addEventListener('click', () => {
-    if (index === 0) return;
-    index -= 1;
+function showSlide() {
     carousel.style.transform = `translate3d(-${500 * index}px, 0, 0)`;
-});
+}
 
-nextBtn.addEventListener('click', () => {
-    if (index === 2) return;
-    index += 1;
-    carousel.style.transform = `translate3d(-${500 * index}px, 0, 0)`;
-});
+function nextSlide() {
+    index = (index + 1) % 4;
+    showSlide();
+}
+
+function prevSlide() {
+    index = (index - 1 + 4) % 4;
+    showSlide();
+}
 
 </script>
 </body>
