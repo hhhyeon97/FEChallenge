@@ -10,7 +10,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <style>
-
 * {
 	box-sizing: border-box;
 }
@@ -24,49 +23,55 @@ body {
 }
 
 #slider-container {
-	width: 500px;
-	height: 300px;
-	overflow: hidden; /* 슬라이드 컨테이너를 벗어나는 이미지 숨김 */
+	max-width: 100%;
+	overflow: hidden;
 	position: relative;
+	width: 500px; /* 슬라이드 영역의 너비를 조절 */
+	border-radius: 6px;
 }
 
-#slider-container>#slider {
+#slider-container #slider {
 	display: flex;
-	transition: transform 0.5s ease; /* 0.5초 동안 부드럽게 변화 */
+	transition: transform 0.5s ease;
+	height: 300px; /* 슬라이드 영역의 높이를 설정 */
+	
 }
 
-   #slider-container #slider .slide {
-      flex: 0 0 100%;
-      max-width: 100%; /* 슬라이드 컨테이너에 맞게 이미지 크기 조절 */
-      height: auto; /* 슬라이드 컨테이너에 맞게 이미지 높이 조절 */
-    }
-    
- #slider-container #slider .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* 이미지가 비율을 유지하면서 커버되도록 설정 */
-    }
+#slider-container #slider .slide {
+	flex: 0 0 500px; /* 각 슬라이드 이미지의 너비를 슬라이드 영역의 크기로 설정 */
+	height: 100%; /* 슬라이드 영역의 높이에 맞게 설정 */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#slider-container #slider .slide img {
+	width: 100%;
+	max-height: 100%; /* 이미지의 최대 높이를 슬라이드와 동일하게 설정 */
+	object-fit: contain; /* 이미지를 확대하지 않고 원본 비율로 유지 */
+}
+
+/* 추가 스타일: 1번 슬라이드의 이미지만 높이를 슬라이드와 동일하게 설정 */
+#slider-container #slider .slide:nth-child(1) img {
+	height: 100%;
+}
 
 #prev, #next {
 	color: gray;
 	opacity: 0.8;
 	font-size: 30px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
 }
 
 #prev {
-	position: absolute;
-	top: 50%;
-	left: 150px;
-	transform: translateY(-50%);
-	cursor: pointer;
+	left: 10px;
 }
 
 #next {
-	position: absolute;
-	top: 50%;
-	right: 150px;
-	transform: translateY(-50%);
-	cursor: pointer;
+	right: 10px;
 }
 </style>
 </head>
@@ -94,14 +99,14 @@ body {
         adaptiveHeight: true
     });
     
-    $('#prev').click(function() {
+
+      $('#prev').click(function() {
         $('#slider').slick('slickPrev');
       });
 
       $('#next').click(function() {
         $('#slider').slick('slickNext');
       });
-      
 </script>
 
 
