@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>slide</title>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<style>
+#slider-container {
+	width: 80%; /* 조절 가능한 슬라이더 영역의 너비 */
+	margin: 0 auto; /* 가운데 정렬을 위해 */
+	overflow: hidden;
+	position: relative;
+}
+
+#slider {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+	min-width: 100%;
+}
+
+#prev, #next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 24px;
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.7); /* 화살표 배경색 */
+	padding: 10px; /* 화살표 패딩 */
+	border-radius: 5px; /* 화살표 모서리 둥글게 */
+}
+
+#prev {
+	left: 10px;
+}
+
+#next {
+	right: 10px;
+}
+</style>
+</head>
+<body>
+<div id="slider-container">
+        <div id="slider">
+            <div class="slide"><img src="card1.jpg" alt="Image 1"></div>
+            <div class="slide"><img src="card2.jpg" alt="Image 2"></div>
+            <div class="slide"><img src="card3.jpg" alt="Image 3"></div>
+            <div class="slide"><img src="card4.jpg" alt="Image 4"></div>
+        </div>
+        <div id="prev" onclick="prevSlide()">&#9665;</div>
+        <div id="next" onclick="nextSlide()">&#9655;</div>
+    </div>
+<script>
+
+let currentIndex = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+    if (index < 0) {
+        currentIndex = totalSlides - 1;
+    } else if (index >= totalSlides) {
+        currentIndex = 0;
+    } else {
+        currentIndex = index;
+    }
+
+    const offset = -currentIndex * 100 + '%';
+    document.getElementById('slider').style.transform = 'translateX(' + offset + ')';
+}
+
+function nextSlide() {
+    showSlide(currentIndex + 1);
+}
+
+function prevSlide() {
+    showSlide(currentIndex - 1);
+}
+
+</script>
+</body>
+</html>
