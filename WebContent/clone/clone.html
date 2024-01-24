@@ -20,7 +20,6 @@ body{
 	margin: 0;
 	padding: 0;
     font-family: "Noto Sans KR", sans-serif;
-
 }
 
 nav {
@@ -147,7 +146,7 @@ section {
 }
 
 #con1,#con2,#con3,#con4,#con5,#conImg,
-#conImg2,#con6,#con7,#con6Card,#con8,#box8 {
+#conImg2,#con6,#con7,#con6Card,#con8,#box8,#conSlide {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 30px;	  
@@ -275,7 +274,7 @@ bottom: 80px;
 	border-radius : 6px;
 	overflow: hidden;
 	margin-top: -60px;
-	  position: relative; /* slide-container를 상대적 위치로 설정 */
+	position: relative; /* slide-container를 상대적 위치로 설정 */
 }
 
 .slide-container img {
@@ -283,6 +282,7 @@ bottom: 80px;
 	height: 100%;
 	object-fit: cover;
 	min-height: 400px; /* 이미지의 최소 높이 설정 */
+	position: relative;
 }
 
 #prev, #next {
@@ -291,14 +291,26 @@ bottom: 80px;
 	font-size: 50px;
 	cursor: pointer;
 	position: relative;
-    z-index: 1; /* 화살표를 이미지 위로 올리기 */
+   /* z-index: 1;*/ /* 화살표를 이미지 위로 올리기 */
 }
 #prev {
-	  left: 20px; /* 위치 조정 */
+	  right: 100px;
 }
 
 #next {
 	right: 20px;
+}
+
+
+#text03,#text02,#text01 {
+    text-align: center; /* 텍스트를 중앙 정렬 */
+    color: white; /* 텍스트 색상 지정 */
+    font-size: 50px; /* 원하는 텍스트 크기로 설정 */
+    font-weight: bold;
+    z-index: 1; /* 이미지 위로 텍스트를 올리기 */
+	position: relative;
+	left: 800px;
+	bottom: 300px;
 }
 
 </style>
@@ -414,10 +426,15 @@ bottom: 80px;
     <img src="banner1.png" alt="Image 1">
     <img src="banner2.png" alt="Image 2">
     <img src="banner3.png" alt="Image 3">
-</div>
-<div id="textInImage">디스플레이 광고(DA)<br>이해하기<br></div>
+</div>	
 <i id="prev" class='bx bxs-chevron-left' onclick="prevSlide()"></i>
 <i id="next" class='bx bxs-chevron-right' onclick="nextSlide()"></i>
+	
+	<div>
+	<span id="text01" style="display: none;">test</span>
+	<span id="text02" style="display: none;">aaaaaaaaaaa</span>
+	<span id="text03">디스플레이 광고(DA)<br>이해하기</span>
+	</div>
 	
 	
 	
@@ -613,15 +630,14 @@ D-20<br>
 
 	</footer>
 	
-	<script>
+<script>
 $(document).ready(function () {
     $('.slide-container').slick({
         infinite: true,
-        dots: true,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000
+        autoplaySpeed: 2000,
     });
 });
 
@@ -632,6 +648,8 @@ function prevSlide() {
 function nextSlide() {
     $('.slide-container').slick('slickNext');
 }
+
 </script>
+
 </body>
 </html>
