@@ -10,13 +10,21 @@
 <title>반응형 헤더 연습</title>
 <script src="https://kit.fontawesome.com/de18e820f6.js" crossorigin="anonymous"></script>
 <style>
+
+:root {
+	--text-color: #f0f4f5;
+	--background-color: #263343;
+	--accent-color: skyblue;
+}
+
 body{
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
 }
 
 a {
-	color:white;
+	/*color:white;*/
+	color : var(--text-color);
 	text-decoration: none;
 }
 
@@ -104,6 +112,14 @@ i{
 	padding: 8px 12px;
 }
 
+
+.navbar-togglebtn{
+	position: absolute;
+	right: 32px;
+	font-size: 24px;
+	display: none;
+}
+
 @media screen and (max-width: 768px){
 
 	.navbar {
@@ -112,6 +128,7 @@ i{
 		padding : 8px 24px;
 	}
 	.navbar-menu {
+	  display: none;
 	  flex-direction : column;
 	  align-items: center;
 	  width: 100%;
@@ -121,9 +138,20 @@ i{
 	  text-align: center;
 	}
 	.navbar-icons {
+	  display: none;
 	  justify-content: center;
 	  width: 100%;
-	}			
+	}
+	.navbar-togglebtn {
+	  display: block;
+	}	
+	
+	.navbar-menu.active,
+	.navbar-icons.active {
+		display: flex;
+	}
+	
+					
 }
 
 </style>
@@ -145,8 +173,24 @@ i{
 <li><i class="fa-brands fa-instagram"></i></li>
 <li><i class="fa-brands fa-facebook"></i></li>
 </ul>
+
+<a href="#" class="navbar-togglebtn">
+<i class="fa-solid fa-bars"></i>
+</a>
 </nav>
 
+<script>
 
+const toggleBtn = document.querySelector('.navbar-togglebtn');
+const menu = document.querySelector('.navbar-menu');
+const icons = document.querySelector('.navbar-icons');
+
+toggleBtn.addEventListener('click', () => {
+	
+	menu.classList.toggle('active');
+	icons.classList.toggle('active');
+	
+});
+</script>
 </body>
 </html>
