@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<title>반응형 헤더 연습</title>
+<script src="https://kit.fontawesome.com/de18e820f6.js" crossorigin="anonymous"></script>
+<style>
+body{
+	margin: 0;
+}
+
+a {
+	color:white;
+	text-decoration: none;
+}
+
+ul li{
+	list-style: none;
+}
+
+i{
+	color: white;
+}
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #a2bde8;
+	padding: 8px 12px;
+}
+
+.navbar-logo{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.navbar-menu{
+	display:flex;
+	padding-left: 0;
+}
+.navbar-menu li{
+	padding: 8px 12px;
+}
+
+.navbar-icons {
+	display: flex;
+}
+.navbar-icons li{
+	padding: 8px 12px;
+}
+</style>
+</head>
+<body>
+<!--<i class='bx bx-bowl-rice'></i> 밥그릇 아이콘 -->
+<nav class="navbar">
+<div class="navbar-logo">
+<i class="fa-solid fa-user-astronaut"></i>
+<a href="#">practice</a>
+</div>
+<ul class="navbar-menu">
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Contact</a></li>
+<li><a href="#">FAQ</a></li>
+</ul>
+<ul class="navbar-icons">
+<li><i class="fa-brands fa-instagram"></i></li>
+<li><i class="fa-brands fa-facebook"></i></li>
+</ul>
+</nav>
+
+
+</body>
+</html>
