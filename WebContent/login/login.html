@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="https://kit.fontawesome.com/de18e820f6.js" crossorigin="anonymous"></script>
 </head>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
@@ -89,9 +92,31 @@ button:focus {
 	color: white;
 	font-weight: bold;
 }
+header i{
+	color: #f0f4f5;
+	margin-right: 8px;
+}
+header {
+  position: fixed; /* 헤더를 고정시킵니다. */
+  top: 0; /* 화면 상단에 위치하도록 설정합니다. */
+  height: 50px;
+  width: 100%; /* 전체 너비를 차지하도록 설정합니다. */
+  background-color: #a2bde8; /* 헤더의 배경색을 원하는 색상으로 설정합니다. */
+  padding: 10px; /* 헤더의 상하좌우 여백을 조절합니다. */
+  color: f0f4f5; /* 헤더 텍스트의 색상을 설정합니다. */
+  display: flex; /* Flexbox를 사용합니다. */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  color: white;
+}
+}
+}
 </style>
 <body>
-  <header id="mainHeader" style="position:fixed; top: 0px; left: 0px; width:100%" ></header>
+<!--<header id="mainHeader" style="position:fixed; top: 0px; left: 0px; width:100%" ></header>-->
+<header>
+<i class="fa-solid fa-cloud"></i><span style="font-size: 26px;">practice</span>
+</header>
 <section>
 <h2>LOGIN</h2>
 <div id="login-container">
@@ -101,7 +126,7 @@ button:focus {
 <button id="loginBtn" onclick="check()">로그인</button>
 </section>
 <script>
-
+/*
 // 비동기적으로 헤더를 가져와서 현재 페이지에 삽입
         fetch('../navbar/navbar.html')
             .then(response => response.text())
@@ -112,6 +137,7 @@ button:focus {
                 }
             })
             .catch(error => console.error('헤더를 가져오는 중 오류 발생:', error));
+*/
 
 function check() {
 // 임의의 아이디와 비밀번호를 지정합니다.
@@ -125,12 +151,14 @@ var enteredPassword = document.getElementById("password").value;
 // 입력값이 공백인 경우 경고창을 띄우고 해당 입력란으로 포커스 이동
 if (enteredId.trim() === "") {
     alert("아이디를 입력하세요.");
+    document.getElementById("id").value = "";
     document.getElementById("id").focus();
     return;
 }
 
 if (enteredPassword.trim() === "") {
     alert("비밀번호를 입력하세요.");
+    document.getElementById("password").value = "";
     document.getElementById("password").focus();
     return;
 }
