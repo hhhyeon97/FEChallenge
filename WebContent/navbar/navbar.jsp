@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<title>반응형 헤더 연습</title>
+<title>header</title>
 <script src="https://kit.fontawesome.com/de18e820f6.js" crossorigin="anonymous"></script>
 <style>
 
@@ -59,38 +60,7 @@ i{
 }
 .navbar-menu li{
 	padding: 8px 12px;
-	/*transition: all 0.4s ease-out;*/
-	/*display: table-cell; 
-    position: relative; */
 }
-/* hover 스타일 
-.navbar-menu a {
-  color: #fff;
-  text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing: 0.15em;
-  
-  display: inline-block;
-  padding: 15px 20px;
-  position: relative;
-}
-.navbar-menu a:after {    
-  background: none repeat scroll 0 0 transparent;
-  bottom: 0;
-  content: "";
-  display: block;
-  height: 2px;
-  left: 50%;
-  position: absolute;
-  background: #fff;
-  transition: width 0.3s ease 0s, left 0.3s ease 0s;
-  width: 0;
-}
-.navbar-menu a:hover:after { 
-  width: 100%; 
-  left: 0; 
-}
-*/
 
 .navbar-menu li:hover {
 
@@ -194,5 +164,6 @@ toggleBtn.addEventListener('click', () => {
 	
 });
 </script>
+
 </body>
 </html>

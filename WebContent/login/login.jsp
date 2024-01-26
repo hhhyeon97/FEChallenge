@@ -1,10 +1,10 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>login</title>
-</head>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 .notosanskr * { 
@@ -20,22 +20,26 @@
 }
 
 body {
-	font-family: 'JalnanGothic';
+	/*font-family: 'JalnanGothic';
 	margin: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh; /* 100% 높이 설정 */
-	background-color: #ecf0f3; /* 배경색 추가 */
+	height: 100vh; /* 100% 높이 설정 
+	background-color: #ecf0f3; /* 배경색 추가 
+*/
 }
 
 section {
 	text-align: center; /* 텍스트를 가운데 정렬 */
-	height: 50%;
+	width: 50%;
 	background-color: #fff; /* 섹션 배경색 추가 */
 	padding: 20px;
 	border-radius: 15px; /* 섹션 테두리 둥글게 만들기 */
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+	margin: 50px auto 0; /* 수평 가운데 정렬 및 위쪽 여백 추가 */
+	position:relative;
+	top: 80px;
 }
 
 h2 {
@@ -91,7 +95,7 @@ button:focus {
 }
 </style>
 <body>
-  <header id="mainHeader" style="position:fixed; top: 0px; left: 0px; width:100%" ></header>
+<jsp:include page="../navbar/navbar.jsp" />
 <section>
 <h2>LOGIN</h2>
 <div id="login-container">
@@ -101,17 +105,6 @@ button:focus {
 <button id="loginBtn" onclick="check()">로그인</button>
 </section>
 <script>
-
-// 비동기적으로 헤더를 가져와서 현재 페이지에 삽입
-        fetch('../navbar/navbar.html')
-            .then(response => response.text())
-            .then(html => {
-                const headerElement = document.getElementById('mainHeader');
-                if (headerElement) {
-                    headerElement.innerHTML = html;
-                }
-            })
-            .catch(error => console.error('헤더를 가져오는 중 오류 발생:', error));
 
 function check() {
 // 임의의 아이디와 비밀번호를 지정합니다.
@@ -149,5 +142,6 @@ if (enteredId === correctId && enteredPassword === correctPassword) {
 }
 }
 </script>
+
 </body>
 </html>
