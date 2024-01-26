@@ -37,7 +37,7 @@ section {
 	padding: 20px;
 	border-radius: 15px; /* 섹션 테두리 둥글게 만들기 */
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
-	margin: 50px auto 0; /* 수평 가운데 정렬 및 위쪽 여백 추가 */
+	margin: 20px auto 0; /* 수평 가운데 정렬 및 위쪽 여백 추가 */
 	position:relative;
 	top: 80px;
 }
@@ -118,12 +118,14 @@ var enteredPassword = document.getElementById("password").value;
 // 입력값이 공백인 경우 경고창을 띄우고 해당 입력란으로 포커스 이동
 if (enteredId.trim() === "") {
     alert("아이디를 입력하세요.");
+    document.getElementById("id").value = "";
     document.getElementById("id").focus();
     return;
 }
 
 if (enteredPassword.trim() === "") {
     alert("비밀번호를 입력하세요.");
+    document.getElementById("password").value = "";
     document.getElementById("password").focus();
     return;
 }
@@ -132,7 +134,7 @@ if (enteredPassword.trim() === "") {
 if (enteredId === correctId && enteredPassword === correctPassword) {
     alert("로그인 성공!");
     // 로그인 성공 시 이동할 페이지로 리다이렉션
-    window.location.href = "../navbar/navbar.html";
+    window.location.href = "#";
 } else {
     alert("아이디 또는 비밀번호가 일치하지 않습니다.");
  // 아이디와 비밀번호 입력란을 초기화하고 아이디 입력란으로 포커스 이동
