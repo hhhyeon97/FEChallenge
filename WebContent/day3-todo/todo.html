@@ -4,8 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-<title>To-Do List</title>   
+<title>To-Do</title>   
 <link rel="stylesheet" href="style.css"> 
+<style>
+#editModal {
+    display: none; /* 초기에는 모달 숨기기 */
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 150px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+}
+
+.modal-content {
+    padding: 10px;
+    width: 50%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
 </head>
 <body>
 <h2>To-Do List</h2>
@@ -28,8 +61,18 @@
 </div>
 <ul id="todoList"></ul>
 </div>
-<script>
 
+<!-- 수정 버튼과 모달을 위한 추가적인 HTML -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeEditModal()">&times;</span>
+    <label for="editedTaskInput">수정</label>
+    <input type="text" id="editedTaskInput" maxlength="16">
+    <button onclick="saveEditedTask()">저장</button>
+  </div>
+</div>
+
+<script>
 //deleteTask 함수를 밖으로 빼서 전역 함수로 정의
 function deleteTask(listItem) {
  listItem.parentNode.removeChild(listItem);
@@ -49,8 +92,6 @@ document.getElementById("addBtn").addEventListener("click", function () {
 document.getElementById("sortBtn").addEventListener("click", function () {
  sortTasksByPriority();
 });
-
-
 
 function addTask() {
     // 입력 필드에서 할 일과 우선순위를 가져오기
@@ -72,9 +113,6 @@ function addTask() {
     // 입력 필드 초기화
     taskInput.value = "";
 }
-
-
-
 
 function createListItem(priority, task) {
     // 새로운 li 요소 생성
@@ -126,7 +164,6 @@ function createListItem(priority, task) {
     return listItem;
 }
 
-
 function toggleCompleted(listItem, completed) {
 	if (completed) {
 		listItem.classList.add("completed");
@@ -134,8 +171,6 @@ function toggleCompleted(listItem, completed) {
 		listItem.classList.remove("completed");
 	}
 }
-
-
 
 function showAllTasks() {
 		showTasksByStatus(null);
@@ -202,6 +237,53 @@ function showTasksByStatus(completed) {
 			return 0;
 		}
 	}
+	
+	
+	/* 수정  */
+
+	function editTask(listItem) {
+    // 모달 표시
+    var editModal = document.getElementById("editModal");
+    editModal.style.display = "block";
+
+    // 수정할 내용 입력 필드 가져오기
+    var editedTaskInput = document.getElementById("editedTaskInput");
+
+    // 기존 할 일 내용 표시 및 입력 필드 활성화
+    editedTaskInput.value = listItem.childNodes[2].nodeValue.trim(); // 할 일 내용은 세 번째 자식 노드에 위치함
+    editedTaskInput.disabled = false;
+
+    // 수정할 대상 리스트 아이템을 저장
+    editedTaskInput.listItem = listItem;
+}
+	// 수정된 할 일을 저장하는 함수
+	function saveEditedTask() {
+	    // 수정할 내용 입력 필드와 대상 리스트 아이템 가져오기
+	    var editedTaskInput = document.getElementById("editedTaskInput");
+	    var listItem = editedTaskInput.listItem;
+
+	    // 수정된 내용으로 할 일 업데이트
+	    var updatedTask = editedTaskInput.value.trim();
+	    if (updatedTask === "") {
+	        alert("수정할 내용을 입력하세요!");
+	        return;
+	    }
+
+	    // 해당 리스트 아이템의 텍스트 노드 업데이트
+	    listItem.childNodes[2].nodeValue = " " + updatedTask;
+
+	    // 모달 닫기
+	    closeEditModal();
+	}
+
+	// 모달 닫기 함수
+	function closeEditModal() {
+	    var editModal = document.getElementById("editModal");
+	    editModal.style.display = "none";
+	}
+	
+	
+	
 </script>
 </body>
 </html>
