@@ -86,15 +86,6 @@ option:hover {
 	margin-right: 60px;
 }
 
-#sortBtn{
-	padding : 10px;
-	background-color: white;
-	border : 2px solid #95c9a4;
-	color: gray;
-	border-radius: 6px;
-	transition: background-color 0.3s ease;
-}
-
 .bx.bx-message-square-add {
   color: rgba(206, 212, 218, 0.5);
   font-size: 40px;

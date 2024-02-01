@@ -61,10 +61,38 @@ label {
     margin-bottom: 15px;
 }
 
-
+/*우선순위 정렬 스타일 */
 #sortdiv{
 	display: flex;
 }
+
+  #sortBtn {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        font-size: inherit;
+        position:relative;
+        bottom: 60px;
+    }
+
+  #sortBtn::after {
+        content: "우선순위 정렬";
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        opacity: 0; /* 초기에는 투명하게 설정 */
+        pointer-events: none; /* 마우스 이벤트를 무시하여 이모티콘을 클릭할 수 있도록 함 */
+        transition: opacity 0.3s ease; /* 투명도 전환 효과 추가 */
+    }
+
+    #sortBtn:hover::after {
+        opacity: 1; /* 호버 시 메시지를 보이도록 투명도를 1로 변경 */
+    }
 </style>
 </head>
 <body>
@@ -76,7 +104,7 @@ label {
             <button class="showBtn" onclick="showUncompletedTasks()">미완료</button>
         </div>
         <div id="sortdiv">
-        	  <button id="sortBtn" onclick="sortTasksByPriority()">우선순위 별 정렬</button>
+        	  <button id="sortBtn" onclick="sortTasksByPriority()"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAI1JREFUSEvdldENgCAMRI9RnURHcTUnQWsgAQINWC4m+In0Hn1NwIH8OXI+1gX4oK7sMK73mH1rW4p+A/ScPNsz2gEd0DOD7NCjHdABdEV0gKaoqnvmDKYA6IpMgP2pPhoJG4ATQG0G6o1c/qxBYriwzQAJSSFp+LAe7TYVyBW0fAqOReu+aCYtaTFd0Q2MWRwZgW0zMAAAAABJRU5ErkJggg=="/></button>
         </div>
 <div id="todoInput">
     <select id="priorityCheckbox" name="priority">
