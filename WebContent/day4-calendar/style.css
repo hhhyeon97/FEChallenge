@@ -21,10 +21,9 @@ body {
     justify-content: center;*/
     height: 100vh;
     
-    
-    display: flex; /* 수평으로 배치하기 위해 flex 속성 추가 */
+  display: flex; /* 수평으로 배치하기 위해 flex 속성 추가 */
   flex-direction: row; /* 기본적으로 가로 방향으로 나열됨 */
-  align-items: flex-start; /* 수직 정렬은 위로 정렬 (상단 정렬) */
+  align-items: flex-start; /* 수직 정렬은 위로 정렬 (상단 정렬) */ 
     
 }
 
@@ -101,7 +100,7 @@ i.bxs-chevron-right, i.bxs-chevron-left {
   width : 250px;
   max-width: 300px;
   margin-top: 20px;
-  margin-left: 50px; /* 메모장과 달력 사이 간격을 조절할 수 있습니다. */
+  margin-left: 60px; /* 메모장과 달력 사이 간격을 조절할 수 있습니다. */
   
 }
 

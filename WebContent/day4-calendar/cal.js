@@ -83,6 +83,8 @@ function generateCalendar() {
     
 // 클릭 가능한 날짜에 이벤트 추가 및 호버 포인터 기능 추가
 var dateCells = document.querySelectorAll('#calendar table td[style=""]');
+
+
 dateCells.forEach(function (cell) {
     cell.addEventListener('mouseover', function () {
         cell.style.cursor = 'pointer';

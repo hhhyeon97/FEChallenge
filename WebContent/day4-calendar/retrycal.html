@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>calendar-practice</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+}
+
+.calendar-container {
+  width: 300px;
+  margin: 20px auto;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-cell {
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.day-header {
+  cursor: default; /* 요일 헤더 셀에는 포인터 모양 적용하지 않음 */
+}
+
+.note-container {
+  width: 300px;
+  margin: 20px auto;
+  display: none; /* Initially hide note container */
+}
+
+.note-header {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.note-header h2 {
+  margin: 0;
+}
+
+.note-content textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  margin-bottom: 10px;
+}
+
+.note-buttons button {
+  margin-right: 5px;
+}
+
+/* Color for Saturday */
+.calendar-cell:nth-child(7n+0) {
+  color: blue;
+}
+
+/* Color for Sunday */
+.calendar-cell:nth-child(7n+1) {
+  color: red;
+}
+
+/* 버튼 지우고 아이콘만 보이게 */
+#prevMonth,#nextMonth {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        font-size: inherit;
+    }
+    
+</style>
+</head>
+<body>
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button id="prevMonth"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJJJREFUSEvt1FEOQDAQBNBxU06Ck3A0bsImmoiEmZ2mf/a3zTzdbnVoXF3jfPwA7bDbogXABmBmggNEeH8FTwzJAvfwMFYAw9cpMkA6PGAVsMJVwA5XgKpwBRjPTTEppejUPC9cuYMqRAHio2xEBWwkA1hIFngi8YrjNb+WAxRkZ+HKmLKfJV13T0CDy4YfoK06AFxFHBmQK/o/AAAAAElFTkSuQmCC"/></button>
+    <h2 id="currentMonth"></h2>
+    <button id="nextMonth"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJxJREFUSEvt1NEJgDAMhOHrJm6mTqJOoqM5igYsFLEmd9g3+6z/B01oQuOTGvfxA+4NR69oBbADWNzi7YMIYPHh+m9mEQ/oAPRn3ML5UIgH5OikIlHAIAlhAAlhARpRgHKrDNwAjLX1ZQEqbigD0HEGkOJRQI5HgXL/Xwf6NOjoDAyxZ6O6LV9tEfuYUltEx6MzkML5p+gMZKQ5cAB0nxsZbqm42AAAAABJRU5ErkJggg=="/></button>
+  </div>
+  <div class="calendar-grid" id="calendarGrid">
+    <div class="calendar-cell day-header">일</div>
+    <div class="calendar-cell day-header">월</div>
+    <div class="calendar-cell day-header">화</div>
+    <div class="calendar-cell day-header">수</div>
+    <div class="calendar-cell day-header">목</div>
+    <div class="calendar-cell day-header">금</div>
+    <div class="calendar-cell day-header">토</div>
+  </div>
+</div>
+
+<div class="note-container">
+  <div class="note-header">
+    <h2 id="noteDate"></h2>
+  </div>
+  <div class="note-content">
+    <textarea id="noteText" placeholder="Write your note here..."></textarea>
+    <div class="note-buttons">
+      <button id="saveNote">Save</button>
+      <button id="editNote">Edit</button>
+      <button id="deleteNote">Delete</button>
+    </div>
+  </div>
+</div>
+<script>
+//DOMContentLoaded 이벤트 핸들러 등록
+document.addEventListener('DOMContentLoaded', function () {
+// 필요한 DOM 요소들을 가져옴
+const currentMonth = document.getElementById('currentMonth');
+const calendarGrid = document.getElementById('calendarGrid');
+const noteContainer = document.querySelector('.note-container');
+const noteDate = document.getElementById('noteDate');
+const noteText = document.getElementById('noteText');
+const saveNoteBtn = document.getElementById('saveNote');
+const editNoteBtn = document.getElementById('editNote');
+const deleteNoteBtn = document.getElementById('deleteNote');
+
+let selectedDate = null; // 선택된 날짜 저장 변수
+
+// 오늘 날짜 가져오기
+const currentDate = new Date();
+let currentYear = currentDate.getFullYear();
+let currentMonthIndex = currentDate.getMonth();
+let currentDay = currentDate.getDate();
+
+// 요일 배열
+const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+
+// 지정된 월과 년도에 해당하는 달력 표시 함수
+function displayCalendar(month, year) {
+ // 이전 달력 내용 삭제
+ calendarGrid.innerHTML = '';
+
+ // 현재 월과 년도 설정
+ currentMonth.textContent = `${year}/${month + 1}`;
+
+ // 요일 헤더 생성
+ daysOfWeek.forEach(day => {
+   const dayHeader = document.createElement('div');
+   dayHeader.classList.add('calendar-cell', 'day-header');
+   dayHeader.textContent = day;
+   calendarGrid.appendChild(dayHeader);
+ });
+
+ // 해당 월의 첫째 날 가져오기
+ const firstDayOfMonth = new Date(year, month, 1);
+ const startingDay = firstDayOfMonth.getDay();
+
+ // 해당 월의 일 수 가져오기
+ const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+ // 해당 월의 각 날짜에 대한 달력 셀 생성
+ for (let i = 0; i < startingDay; i++) {
+   const cell = document.createElement('div');
+   cell.classList.add('calendar-cell', 'empty-cell');
+   calendarGrid.appendChild(cell);
+ }
+
+ for (let day = 1; day <= daysInMonth; day++) {
+   const cell = document.createElement('div');
+   cell.classList.add('calendar-cell');
+   cell.textContent = day;
+
+   // 선택된 날짜 강조 표시
+   if (selectedDate && day === selectedDate.getDate() && month === selectedDate.getMonth() && year === selectedDate.getFullYear()) {
+     cell.classList.add('selected');
+   }
+
+   // 해당 날짜에 메모가 있는지 확인
+   const storedNote = localStorage.getItem(`${year}-${month + 1}-${day}`);
+   if (storedNote) {
+     const dot = document.createElement('span');
+     dot.classList.add('note-dot');
+     cell.appendChild(dot);
+   }
+
+   cell.addEventListener('click', function () {
+     selectDate(day, month, year);
+   });
+
+   calendarGrid.appendChild(cell);
+ }
+}
+
+// 날짜 선택 함수
+function selectDate(day, month, year) {
+ selectedDate = new Date(year, month, day);
+ displayCalendar(month, year);
+ if (selectedDate) {
+   noteContainer.style.display = 'block';
+   noteDate.textContent = selectedDate.toLocaleDateString();
+   const storedNote = localStorage.getItem(selectedDate.toLocaleDateString());
+   if (storedNote) {
+     noteText.value = storedNote;
+     noteText.readOnly = true;
+     saveNoteBtn.style.display = 'none';
+     editNoteBtn.style.display = 'inline-block';
+     deleteNoteBtn.style.display = 'inline-block';
+   } else {
+     noteText.value = '';
+     noteText.readOnly = false;
+     saveNoteBtn.style.display = 'inline-block';
+     editNoteBtn.style.display = 'none';
+     deleteNoteBtn.style.display = 'none';
+   }
+ }
+}
+
+
+
+//메모 저장된 날짜에 동그라미 표시 함수
+function displayCalendarDots() {
+  const cells = document.querySelectorAll('.calendar-cell:not(.day-header)');
+  cells.forEach(cell => {
+    const date = cell.textContent;
+    const storedNote = localStorage.getItem(`${currentYear}-${currentMonthIndex + 1}-${date}`);
+    if (storedNote) {
+      const dot = document.createElement('span');
+      dot.classList.add('note-dot');
+      dot.style.backgroundColor = '#b2c9ed'; // 동그라미 색상 설정
+      cell.appendChild(dot);
+    }
+  });
+}
+
+//초기 달력 표시
+displayCalendar(currentMonthIndex, currentYear);
+displayCalendarDots(); // 추가: 동그라미 표시 함수 호출
+noteContainer.style.display = 'none'; // 초기에 메모 영역 숨김
+
+
+// 이전 달로 이동
+document.getElementById('prevMonth').addEventListener('click', function () {
+ currentMonthIndex--;
+ if (currentMonthIndex < 0) {
+   currentMonthIndex = 11;
+   currentYear--;
+ }
+ displayCalendar(currentMonthIndex, currentYear);
+});
+
+// 다음 달로 이동
+document.getElementById('nextMonth').addEventListener('click', function () {
+ currentMonthIndex++;
+ if (currentMonthIndex > 11) {
+   currentMonthIndex = 0;
+   currentYear++;
+ }
+ displayCalendar(currentMonthIndex, currentYear);
+});
+
+// 메모 저장
+saveNoteBtn.addEventListener('click', function () {
+ if (selectedDate && noteText.value.trim() !== '') {
+   localStorage.setItem(selectedDate.toLocaleDateString(), noteText.value);
+   displayCalendar(selectedDate.getMonth(), selectedDate.getFullYear());
+   noteContainer.style.display = 'none'; // 메모 저장 후 메모 영역 숨김
+ }
+});
+
+// 메모 수정
+editNoteBtn.addEventListener('click', function () {
+ if (selectedDate) {
+   noteText.readOnly = false;
+   saveNoteBtn.style.display = 'inline-block';
+   editNoteBtn.style.display = 'none';
+ }
+});
+
+// 메모 삭제
+deleteNoteBtn.addEventListener('click', function () {
+ if (selectedDate) {
+   localStorage.removeItem(selectedDate.toLocaleDateString());
+   noteText.value = '';
+   noteText.readOnly = false;
+   saveNoteBtn.style.display = 'inline-block';
+   editNoteBtn.style.display = 'none';
+   deleteNoteBtn.style.display = 'none';
+   displayCalendar(selectedDate.getMonth(), selectedDate.getFullYear());
+   noteContainer.style.display = 'none'; // 메모 삭제 후 메모 영역 숨김
+ }
+});
+});
+
+
+</script>
+</body>
+</html>

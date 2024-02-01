@@ -108,9 +108,10 @@ dateCells.forEach(function (cell) {
 
     cell.addEventListener('click', function () {
         // 클릭한 날짜에 대한 메모 작성 창 띄우기
-        var date = new Date(currentYear, currentMonth, parseInt(cell.innerText));
-        var dateString = date.toISOString().split('T')[0]; // YYYY-MM-DD 형식으로 변환
-
+          var date = new Date(currentYear, currentMonth, parseInt(cell.innerText));
+          var dateString = date.toISOString().split('T')[0]; // YYYY-MM-DD 형식으로 변환
+        
+        
         // 이전에 저장된 메모 불러오기
         var storedMemo = localStorage.getItem(dateString) || '';
 
@@ -125,11 +126,12 @@ function showMemoContainer(initialMemo, currentDate) {
      // 메모 텍스트 영역 초기화
     memoTextArea.value = initialMemo;
     
-     // 메모장 영역에 해당 날짜 표시
-    memoContainer.querySelector('h3').innerText = `Memo\n${currentDate}`;
 
     // 메모장 보이기
     memoContainer.style.display = 'block';
+     
+     // 메모장 영역에 해당 날짜 표시
+    memoContainer.querySelector('h3').innerText = `Memo\n${currentDate}`;
 	
  	// 메모 버튼 클릭 시
     saveMemoButton.onclick = function () {
