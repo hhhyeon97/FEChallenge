@@ -19,14 +19,14 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh;
+	min-height: 80vh;
 }
 
 #slider-container {
-	max-width: 100%;
 	overflow: hidden;
 	position: relative;
 	width: 500px; /* 슬라이드 영역의 너비를 조절 */
+	top: 100px;
 	border-radius: 6px;
 }
 
@@ -80,8 +80,8 @@ body {
 <div id="slider-container">
         <div id="slider">
             <div class="slide"><img src="card1.jpg" alt="Image 1"></div>
-            <div class="slide"><img src="card2.jpg" alt="Image 2"></div>
-            <div class="slide"><img src="card3.jpg" alt="Image 3"></div>
+            <div class="slide"><img src="https://i.pinimg.com/564x/68/34/b4/6834b405c48b7a7ad1df18cd3622e77e.jpg" alt="Image 2"></div>
+            <div class="slide"><img src="https://i.pinimg.com/564x/76/c0/af/76c0af96ba310eea68a38f90c5c5d3b6.jpg" alt="Image 3"></div>
         </div>
     </div>
         <i id="prev" class='bx bxs-chevron-left' onclick="prevSlide()"></i>
